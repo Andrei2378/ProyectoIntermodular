@@ -1,0 +1,26 @@
+nav {
+  width: 99.9999999%;
+  display: flex;
+  background-color: burlywood;
+}
+
+ul {
+  width: 100%;
+  display: flex;
+  list-style: none;
+}
+
+li {
+  width: 90px;
+  padding: 10px;
+  background-color: gainsboro;
+  margin-left: 9%;
+  text-align: center;
+  border-radius: 5px;
+}
+
+a {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-decoration: none;
+  color: black;
+}
