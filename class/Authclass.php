@@ -1,15 +1,33 @@
 <?php
 include 'Conexionmysqli.php';
 session_start();
+/**
+ * [Creamos la clase para poder autentificar los usuarios]
+ */
 class Authclass
 {
     private $conexion;
+    /**
+     * Constructor para obtener la conexión a la base de datos
+     */
     public function __construct()
     {
         $con = new Conexionmysqli();
-        $this->conexion = $con->abrirConexion();
+        $this->conexion = $con->obtenerConexion();
     }
 
+    /**
+     * Metodo para realizar el registro de usuario
+     * @param mixed $usuario
+     * @param mixed $email
+     * @param mixed $pass
+     * @param mixed $direccion
+     * @param mixed $poblacion
+     * @param mixed $provincia
+     * @param mixed $codigoPostal
+     * 
+     * @return [boolean]
+     */
     public function registrarUsuario($usuario, $email, $pass, $direccion, $poblacion, $provincia, $codigoPostal)
     {
         // Encriptar la contraseña usando SHA-256
@@ -28,6 +46,13 @@ class Authclass
     }
 
 
+    /**
+     * Metodo para el login del usuario
+     * @param mixed $usuario
+     * @param mixed $pass
+     * 
+     * @return [boolean]
+     */
     public function verificarLogin($usuario, $pass)
     {
         $passHash = hash('sha256', $pass);

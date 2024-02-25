@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * [Creamos la conexión a la base de datos]
+ */
 class Conexionmysqli
 {
     private $dbHost = 'localhost';
@@ -9,6 +12,10 @@ class Conexionmysqli
 
     protected $conexion;
 
+    /**
+     * Método para realizar la conexion a la base de datos
+     * @return [conexion]
+     */
     public function obtenerConexion()
     {
         $this->conexion = new mysqli($this->dbHost, $this->dbUser, $this->dbPass, $this->dbName);
@@ -22,6 +29,10 @@ class Conexionmysqli
         return $this->conexion;
     }
 
+    /**
+     * Metodo para cerrar la conexión a la base de datos
+     * @return [conexion]
+     */
     public function cerrarConexion()
     {
         if ($this->conexion) {

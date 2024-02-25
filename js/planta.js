@@ -5,6 +5,9 @@ let idJSON = localStorage.getItem("id");
 let id = JSON.stringify(idJSON);
 
 let cadena = id;
+/**
+ * Damos formato al ID
+ */
 let formatID = cadena.substring(3, cadena.length - 3);
 console.log(formatID);
 
@@ -18,6 +21,12 @@ fetch("https://perenual.com/api/species/details/" + formatID + "?key=sk-x8SR65cc
         console.log("Catch " + err);
     })
 
+/**
+ * Funcion para mostrar todos los datos de una planta en concreto
+ * @param mixed info
+ * 
+ * @return [type]
+ */
 function datosPlanta(info) {
     const plantaHTML = "";
     const nombre_comun = info.common_name;
@@ -121,28 +130,29 @@ function datosPlanta(info) {
     const firstImageUrl = "https://perenual.com/storage/image/hardiness/og/0.png";
     const firstImage = new Image();
     firstImage.onload = () => {
-        // Set the canvas size to match the first image's size
+        // Definimos el tamaño del Canvas
 
         canvas.width = firstImage.width;
         canvas.height = firstImage.height;
 
-        // Load the rest of the images and draw them onto the canvas
+        // Cargamos la imagen base
         const imageUrls = ["https://perenual.com/storage/image/hardiness/og/0.png"];
 
         for (var x = zonaMinima; x <= zonaMaxima; x++) {
             const url = "https://perenual.com/storage/image/hardiness/og/" + x + ".png";
             imageUrls.push(url);
         }
-
+        /*
+        * Pintamos desde la zona climatica minima 
+        * a la zona climatica maxima en la que se desarrolla la planta
+        */
         for (let i = 0; i < imageUrls.length; i++) {
             const img = new Image();
             img.onload = () => {
-                // Set the global alpha value to 0.8 for all layers except for 0.png
                 if (i > 0) {
                     ctx.globalAlpha = 0.8;
                 }
                 ctx.drawImage(img, 0, 0);
-                // Reset the global alpha value to 1.0 for the next layer
                 ctx.globalAlpha = 1.0;
             };
             img.src = imageUrls[i];

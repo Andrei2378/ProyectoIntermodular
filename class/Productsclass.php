@@ -2,9 +2,15 @@
 
 include_once 'Conexionmysqli.php';
 
+/**
+ * [Creamos la clase en la que englobaremos toda la funcionalidad de los productos]
+ */
 class Productsclass
 {
     private $conexion;
+    /**
+     * Nos conectamos a la base de datos por medio del constructor
+     */
     public function __construct()
     {
         $con = new Conexionmysqli();
@@ -30,6 +36,12 @@ class Productsclass
         return $productos;
     }
 
+    /**
+     * Obtenemos el ID de los productos
+     * @param mixed $id
+     * 
+     * @return [array]
+     */
     public function productPorId($id)
     {
         $consulta = $this->conexion->prepare('SELECT p.*, c.nombre AS nombre_categoria, c.id_categoria
@@ -47,10 +59,9 @@ class Productsclass
         return $producto;
     }
 
-    public function modificarProductos($id)
+    
+    /*public function modificarProductos($id)
     {
 
-
-
-    }
+    }*/
 }

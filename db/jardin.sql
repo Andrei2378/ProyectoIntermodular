@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2024 a las 20:19:21
+-- Tiempo de generación: 25-02-2024 a las 21:01:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -80,7 +80,7 @@ CREATE TABLE `pedidos` (
 CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
   `nombre` varchar(100) DEFAULT NULL,
-  `descripción` text DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
   `precio` decimal(10,2) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   `id_categoria` int(11) DEFAULT NULL
@@ -90,7 +90,7 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `nombre`, `descripción`, `precio`, `imagen`, `id_categoria`) VALUES
+INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `imagen`, `id_categoria`) VALUES
 (1, 'Pala de jardín', 'Pala resistente para cavar y trasplantar en el jardín.', 15.99, NULL, 1),
 (2, 'Rastrillo de mano', 'Rastrillo pequeño para trabajar en áreas reducidas del jardín.', 9.99, NULL, 1),
 (3, 'Tijeras de podar', 'Tijeras afiladas para podar ramas y arbustos.', 12.49, NULL, 1),
@@ -206,15 +206,17 @@ CREATE TABLE `usuarios` (
   `direccion` varchar(100) DEFAULT NULL,
   `poblacion` varchar(100) DEFAULT NULL,
   `provincia` varchar(100) DEFAULT NULL,
-  `codigo_postal` varchar(11) DEFAULT NULL
+  `codigo_postal` varchar(11) DEFAULT NULL,
+  `rol` varchar(10) DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `pass`, `direccion`, `poblacion`, `provincia`, `codigo_postal`) VALUES
-(2, 'Juan', 'ejemplo@example.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123 Calle Principal', 'Ciudad Ejemplo', 'Provincia Ejemplo', '12345');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `pass`, `direccion`, `poblacion`, `provincia`, `codigo_postal`, `rol`) VALUES
+(1, 'admin', 'admin@admin.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123 Calle Principal', 'Ciudad Ejemplo', 'Provincia Ejemplo', '12345', 'admin'),
+(2, 'Andrei', 'correo@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'direccion', 'poblacion', 'Burgos', '09400', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -286,7 +288,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

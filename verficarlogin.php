@@ -12,4 +12,3 @@ if (isset($_POST['iniciar'])) {
     }
     $auth->cerrarConexion();
 }
-

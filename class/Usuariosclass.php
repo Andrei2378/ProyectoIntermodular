@@ -2,10 +2,16 @@
 
 include_once 'Conexionmysqli.php';
 
+/**
+ * [Creamos la clase en la que englobaremos toda la funcionalidad de los usuarios]
+ */
 class Usuariosclass
 {
     private $conexion;
 
+    /**
+     * Nos conectamos a la base de datos por medio del constructor
+     */
     public function __construct()
     {
         $con = new Conexionmysqli();
@@ -13,6 +19,7 @@ class Usuariosclass
     }
 
     /**
+     * Metodo por el cual obtenemos todos los usuarios
      * @return [array]
      */
     public function obtenerUsuarios()
