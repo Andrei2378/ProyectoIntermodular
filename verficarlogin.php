@@ -6,7 +6,7 @@ if (isset($_POST['iniciar'])) {
 
     $auth = new Authclass();
     if ($auth->verificarLogin($usuario, $pass)) {
-        header('Location: /views/plantas.view.php');
+        header('Location: /views/inicio.view.php');
     } else {
         echo "Error de inicio de sesión: Usuario o contraseña incorrectos.";
     }

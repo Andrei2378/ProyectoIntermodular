@@ -8,7 +8,7 @@
     <title>Inicio</title>
   </head>
   <body>
-  <header>
+  <!-- <header>
   <h1>Bienvenido</h1>
         <nav id="menuPrincipal" class="menu-principal">
             <ul class="menu-lista">
@@ -21,7 +21,7 @@
             </ul>
         </nav>
         
-    </header>
+    </header> -->
     <div class="logos_inicio">
       <h3>Nuestras plantas</h3>
       <a href="plantas.view.php">
