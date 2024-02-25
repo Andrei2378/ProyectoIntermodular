@@ -1,0 +1,12 @@
+div{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    display: inline-block; 
+    background-color: lightgreen;
+    margin-left: 2%;
+    margin-top: 10%;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}

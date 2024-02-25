@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+}
+
+header {
+  display: block;
+  background-color: greenyellow;
+  top: 0;
+  margin: 0;
+  width: 99.9999999%;
+}
+
+h1 {
+  padding: 2%;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+.info_planta {
+  background-color: rgb(146, 215, 129);
+  width: 17%;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  flex: 1 100px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.info_planta figure {
+  width: 99%;
+  margin-left: 0;
+}
+
+.info_planta figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.info_planta h3 {
+  font-style: italic;
+}
+
+button {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  width: 99.999%;
+  height: 30%;
+  background-color: red;
+  position: absolute;
+  bottom: -90%;
+}
