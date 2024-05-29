@@ -1,3 +1,14 @@
+<?php
+session_start();
+if ($_SESSION['rol'] !== "admin") {
+    header("Location: views/inicio.view.php");
+}
+
+if (!$_SESSION['loguedo']) {
+    header("Location: views/login.view.php");
+}
+
+?>
 <header>
     <link rel="stylesheet" href="../../css/usuariosadmin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -21,6 +32,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="usuarios.view.php">Usuario</a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -29,33 +41,14 @@
 
 </header>
 
+<div id="buscador" class="container">
+    <input class="form-class" id="buscar" type="text" placeholder="bucar por nombre">
+</div>
 
-<?php
+<div class="container">
+    <div class="row">
 
-include_once '../../class/Usuariosclass.php';
+    </div>
+</div>
 
-$usuarios = new Usuariosclass();
-
-$obtenerUsuarios = $usuarios->obtenerUsuarios();
-
-echo '<div class="container">';
-echo '<div class="row">';
-foreach ($obtenerUsuarios as $usuario) {
-    echo '<div class="col-md-4">';
-    echo '<div class="card">';
-    echo '<div class="card-body">';
-    echo '<h2 class="card-title">' . $usuario['nombre'] . '</h2>';
-    echo '<p class="card-text">Correo: ' . $usuario['email'] . '</p>';
-    echo '<p class="card-text">Direccion: ' . $usuario['direccion'] . '</p>';
-    echo '<p class="card-text">Poblacion: ' . $usuario['poblacion'] . '</p>';
-    echo '<p class="card-text">Provincia: ' . $usuario['provincia'] . '</p>';
-    echo '<p class="card-text">Codigo postal: ' . $usuario['codigo_postal'] . '</p>';
-    echo '</div>'; // Cierre de div.card-body
-    echo '</div>'; // Cierre de div.card
-    echo '</div>'; // Cierre de div.col-md-4
-}
-echo '</div>'; // Cierre de div.row
-echo '</div>'; // Cierre de div.container
-
-
-
+<script defer src="../../js/users.js"></script>

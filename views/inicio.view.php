@@ -6,10 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/plantas.css" />
+  <link rel="stylesheet" href="../css/darkMode.css" />
   <title>Inicio</title>
 </head>
 
 <body>
+  <div class="dark-mode">
+    <label class="switch" for="input">
+      <input type="checkbox" id="input">
+      <span class="slider"></span>
+    </label>
+  </div>
   <div class="logos_inicio">
     <h3>Nuestras plantas</h3>
     <a href="plantas.view.php">
@@ -21,7 +28,7 @@
   </div>
   <div class="logos_inicio">
     <h3>Nuestra tienda</h3>
-    <a href="prodsusuario.view.php">
+    <a href="usuariosprod.view.php">
       <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 16 16">
         <path fill="#333333"
           d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8A2.37 2.37 0 0 1 8 7.083A2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0a.5.5 0 0 1 1 0a1.375 1.375 0 0 0 2.75 0a.5.5 0 0 1 1 0a1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0a.5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z" />
@@ -29,11 +36,11 @@
     </a>
   </div>
   <div class="logos_inicio">
-    <h3>¿Quienes somos?</h3>
-    <a href="somos.view.php">
-      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 1025 1025">
-        <path fill="#333333"
-          d="M994 994q-43 37-113.5 29T738 981t-113-74l-94-94q-19-20-19-47.5t19-46.5l48-48l-387-388l-82 82q-19 19-45.5 19T19 365T0 319.5T19 274L274 19q19-19 45.5-19T365 19t19 45.5t-19 45.5l-82 82l388 387l48-48q19-19 46.5-19t47.5 19l94 94q40 41 74 113t42 142.5T994 994" />
+    <h3>Galeria</h3>
+    <a href="galeria.view.php">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 48 48">
+        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+          d="M29.488 33.506c6.175 2.369 11.073 2.81 12.266.744S40.115 28.163 34.977 24c5.138-4.163 7.969-8.184 6.777-10.25c-.74-1.282-2.908-1.598-5.923-1.088M13.024 24c-5.14 4.164-7.97 8.185-6.778 10.25s6.09 1.625 12.266-.744C19.548 40.038 21.615 44.5 24 44.5c1.488 0 2.853-1.738 3.92-4.632m1.568-25.374C28.452 7.962 26.385 3.5 24 3.5s-4.452 4.462-5.488 10.994c-6.175-2.369-11.073-2.81-12.266-.744c-.726 1.258.04 3.24 1.91 5.539" />
       </svg>
     </a>
   </div>
@@ -46,6 +53,10 @@
       </svg>
     </a>
   </div>
+
 </body>
+
+<script defer src="../js/darkMode.js"></script>
+
 
 </html>

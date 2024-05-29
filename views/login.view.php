@@ -10,15 +10,18 @@
 </head>
 
 <body>
-    <form class="form" action="../verficarlogin.php" method="POST">
+    <div id="error" class="error" style="display: none;"></div>
+    <div id="exito" class="exito" style="display: none;"></div>
+    <form class="form" method="POST">
         <p class="title">Login</p>
         <label>
-            <input required="" placeholder="" name="usuario" type="text" class="input" />
+            <input required id="user" name="usuario" type="email" class="input" />
             <span>Usuario</span>
         </label>
         <label>
-            <input required="" placeholder="" name="contraseña" type="password" class="input" />
+            <input required id="pass" name="contraseña" type="password" class="input" />
             <span>Contraseña</span>
+            <small id="validPass"></small>
         </label>
         <button type="submit" class="submit" name="iniciar">Submit</button>
         <p class="signin">
@@ -26,6 +29,7 @@
         </p>
     </form>
 
+    <script defer src="../js/login.js"></script>
 </body>
 
 </html>

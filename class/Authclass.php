@@ -1,12 +1,16 @@
 <?php
-include 'Conexionmysqli.php';
+
+include_once 'Conexionmysqli.php';
 session_start();
+
 /**
  * [Creamos la clase para poder autentificar los usuarios]
  */
 class Authclass
 {
+
     private $conexion;
+
     /**
      * Constructor para obtener la conexión a la base de datos
      */
@@ -28,23 +32,49 @@ class Authclass
      * 
      * @return [boolean]
      */
-    public function registrarUsuario($usuario, $email, $pass, $direccion, $poblacion, $provincia, $codigoPostal)
+    public function registrarUsuario($nombreUsuario, $email, $direccion, $poblacion, $provincia, $codigoPostal, $pass)
     {
         // Encriptar la contraseña usando SHA-256
         $passHash = hash('sha256', $pass);
 
-        // Preparar la consulta SQL para insertar el nuevo usuario
-        $consulta = $this->conexion->prepare("INSERT INTO usuarios (nombre, email, pass, direccion, poblacion, provincia, codigo_postal) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $consulta->bind_param("sssssss", $usuario, $email, $passHash, $direccion, $poblacion, $provincia, $codigoPostal);
-
-        // Ejecutar la consulta y verificar si fue exitosa
-        if ($consulta->execute()) {
-            return true;
-        } else {
+        // Comprobar si el usuario existe
+        $usuarioStmt = $this->conexion->prepare('SELECT * FROM usuarios WHERE email = ?');
+        if ($usuarioStmt === false) {
+            // Manejo del error de preparación de la consulta
+            error_log($this->conexion->error);
             return false;
         }
-    }
+        $usuarioStmt->bind_param('s', $email);
+        $usuarioStmt->execute();
+        $resultado = $usuarioStmt->get_result();
 
+        if ($resultado->num_rows > 0) {
+            $usuarioStmt->close();
+            return 3; // Usuario ya existe
+        } else {
+            $usuarioStmt->close();
+
+            // Preparar la consulta SQL para insertar el nuevo usuario
+            $consulta = $this->conexion->prepare("INSERT INTO usuarios (nombre, email, pass, direccion, poblacion, codigo_postal, provincia) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            if ($consulta === false) {
+                // Manejo del error de preparación de la consulta
+                error_log($this->conexion->error);
+                return false;
+            }
+            $consulta->bind_param("sssssss", $nombreUsuario, $email, $passHash, $direccion, $poblacion, $codigoPostal, $provincia);
+
+            // Ejecutar la consulta y verificar si fue exitosa
+            if ($consulta->execute()) {
+                $consulta->close();
+                return true;
+            } else {
+                // Registrar el error
+                error_log($this->conexion->error);
+                $consulta->close();
+                return false;
+            }
+        }
+    }
 
     /**
      * Metodo para el login del usuario
@@ -55,24 +85,30 @@ class Authclass
      */
     public function verificarLogin($usuario, $pass)
     {
-        $passHash = hash('sha256', $pass);
-        $consulta = $this->conexion->prepare("SELECT * FROM usuarios WHERE email = ? AND pass = ?");
-        $consulta->bind_param("ss", $usuario, $passHash);
+
+        $consulta = $this->conexion->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $consulta->bind_param("s", $usuario);
         $consulta->execute();
 
         $resultado = $consulta->get_result();
-
         if ($resultado->num_rows > 0) {
             $fila = $resultado->fetch_assoc();
-            $_SESSION['loguedo'] = true;
-            if ($fila["rol"] == "admin") {
-                header("Location: ../views/adminviews/admin.view.php");
-                exit();
-            }
+            $passHash = hash('sha256', $pass);
+            if ($passHash === $fila['pass']) {
+                $_SESSION['provincia'] = $fila['provincia'];
+                $_SESSION['loguedo'] = true;
+                if ($fila["rol"] == "admin") {
+                    $_SESSION['rol'] = "admin";
+                } else {
+                    $_SESSION['rol'] = "user";
+                }
 
-            return true;
+                return 3; //Exito al logearse
+            } else {
+                return 1; //Contraseña incorrecta
+            }
         } else {
-            return false;
+            return 0; //Usuario inexistente
         }
     }
 

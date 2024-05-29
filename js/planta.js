@@ -11,7 +11,7 @@ let cadena = id;
 let formatID = cadena.substring(3, cadena.length - 3);
 console.log(formatID);
 
-fetch("https://perenual.com/api/species/details/" + formatID + "?key=sk-x8SR65ccfe0157bd54158")
+fetch("https://perenual.com/api/species/details/" + formatID + "?key=sk-moqF664646f3269423897")
 
     .then(res => res.json())
     .then((data) => {
@@ -51,6 +51,9 @@ function datosPlanta(info) {
     const descripcion = info.description;
     console.log(tamaño);
 
+    if (imagen == undefined) {
+        imagen = "../img/plantaPorDefecto.jpg";
+    }
 
     const divImg = document.getElementById("imagen");
     const img = document.createElement("img");

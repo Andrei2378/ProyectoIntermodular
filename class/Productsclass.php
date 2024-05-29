@@ -59,9 +59,5 @@ class Productsclass
         return $producto;
     }
 
-    
-    /*public function modificarProductos($id)
-    {
 
-    }*/
 }

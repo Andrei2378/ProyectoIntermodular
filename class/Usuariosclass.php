@@ -34,4 +34,26 @@ class Usuariosclass
         return $usuarios;
     }
 
+    public function obtenerUsuario($id)
+    {
+        $consulta = $this->conexion->prepare('SELECT * FROM usuarios WHERE id_usuario = ? ');
+        $consulta->bind_param("i", $id);
+        $consulta->execute();
+        $resultado = $consulta->get_result();
+        $usuario = $resultado->fetch_assoc();
+        return $usuario;
+    }
+
+    public function modificarUsuario($nombre, $email, $pass, $direccion, $poblacion, $provincia, $codigo_postal, $rol, $id)
+    {
+        $consulta = $this->conexion->prepare('UPDATE usuarios
+                                            SET nombre = ?, email = ?, pass = ?, direccion = ?, poblacion = ?, provincia = ?, codigo_postal = ?, rol = ? 
+                                            WHERE id_usuario = ?');
+        $consulta->bind_param('sssssssi', $nombre, $email, $pass, $direccion, $poblacion, $provincia, $codigo_postal, $rol, $id);
+        if ($consulta->execute()) {
+            $result = $consulta->get_result();
+        }
+        return $result;
+    }
+
 }

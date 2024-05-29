@@ -39,11 +39,13 @@ a {
 .info_planta figure img {
   object-fit: cover;
   width: 100%;
-  height: 100%;
 }
 
-.info_planta h3 {
+.info_planta p {
   font-style: italic;
+}
+
+.nombres {
 }
 
 button {
@@ -65,7 +67,7 @@ footer {
   background-color: #333;
   overflow: hidden;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .menu-lista {
@@ -80,11 +82,11 @@ footer {
 
 .menu-link {
   display: block;
-  color: white; 
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px; 
+  font-size: 17px;
 }
 
 .menu-link:hover {
@@ -119,16 +121,63 @@ footer {
   }
 }
 
-
-.logos_inicio{
+.logos_inicio {
   width: 300px;
   height: 200px;
   border-radius: 5px;
-  display: inline-block; 
+  display: inline-block;
   background-color: lightgreen;
   margin-left: 20px;
   margin-top: 10%;
   padding: 10px;
   text-align: center;
   position: relative;
+}
+
+#paginador {
+  width: 100%;
+  align-items: center;
+  padding: 30px;
+}
+
+#btn-prev {
+  padding: 10px;
+  margin: 10px;
+  background-color: burlywood;
+}
+#btn-next {
+  padding: 10px;
+  margin: 10px;
+  background-color: burlywood;
+}
+
+.active-page {
+  background-color: rgb(0, 181, 30);
+}
+
+#cargando {
+  background-color: black;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  top: 110%;
+}
+
+.ocultar {
+  opacity: 0;
+  transition: 5s;
+  top: 110%;
+}
+
+#titulo {
+  color: white;
+  text-align: center;
 }

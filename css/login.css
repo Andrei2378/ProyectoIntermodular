@@ -128,3 +128,23 @@ body {
     opacity: 0;
   }
 }
+
+.error {
+  padding: 20px;
+  margin: auto;
+  border: 1px solid red;
+  background: #ef8885;
+  border-radius: 5px;
+  width: 30%;
+  text-align: center;
+}
+
+.exito {
+  padding: 20px;
+  margin: auto;
+  border: 1px solid rgb(0, 175, 0);
+  background: #97ef85;
+  border-radius: 5px;
+  width: 30%;
+  text-align: center;
+}

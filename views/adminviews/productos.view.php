@@ -25,6 +25,24 @@
         </div>
     </div>
 </nav>
+
+<div class="container">
+    <select name="" id="filtro">
+        <option value="Fertilizantes">Fertilizantes</option>
+        <option value="Accesorios">Accesorios</option>
+        <option value="Herramientas de jardineria">Herramientas de jardineria</option>
+        <option value="sustratos">Sustratos</option>
+        <option value="Materiales de jardineria">Materiales de jardineria</option>
+    </select>
+</div>
+
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+<script src="" defer></script>
+
 <?php
 include '../../class/Productsclass.php';
 
@@ -42,14 +60,14 @@ foreach ($obtenerProductos as $producto) {
     if ($producto['imagen'] == null || $producto['imagen'] == "" || !$producto['imagen']) {
         $producto['imagen'] = "../../img/imagen_por_defecto.png";
     }
-    echo '<div class="col-md-4 mb-3">';
+    echo '<div class="col-md-4 mb-3 producto" data-producto = "' . $producto['nombre_categoria'] . '">';
     echo '<div class="card m-4" >';
     echo '<img src="' . $producto["imagen"] . '" class="card-img-top" alt="' . $producto["nombre"] . '">';
     echo '<div class="card-body">';
     echo '<h5 class="card-title">' . $producto["nombre"] . '</h5>';
     echo '<p class="card-text">' . $producto["descripcion"] . '</p>';
     echo '<p class="card-text">Precio: $' . $producto["precio"] . '</p>';
-    echo '<p class="card-text">Categoría: ' . $producto["nombre_categoria"] . '</p>';
+    echo '<p class="card-text"> Categoria: ' . $producto["nombre_categoria"] . '</p>';
     echo '<div class="d-grid gap-2">';
     echo '<form method="POST" action="modificarproducto.view.php">';
     echo '<input type="hidden" name="id" value="' . $producto['id_producto'] . '" />';
@@ -72,5 +90,24 @@ foreach ($obtenerProductos as $producto) {
     $contador++;
 }
 echo '</div>'; // Cierre de div.container
+?>
 
+<script>
+    document.getElementById("filtro").addEventListener("change", function (event) {
+        let categoriaSeleccionada = event.target.value.toLowerCase();
+        console.log(categoriaSeleccionada);
+        let cards = document.querySelectorAll(".producto");
 
+        cards.forEach(function (card) {
+
+            let categoria = card.getAttribute("data-producto").toLowerCase();
+
+            if (categoriaSeleccionada === "" || categoria.includes(categoriaSeleccionada)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+    })
+</script>
