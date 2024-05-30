@@ -31,7 +31,7 @@ switch ($accion) {
             $pass = $_POST['pass'];
             $rpass = $_POST['rpass'];
 
-            $resultado = $auth->registrarUsuario($usuario, $email, $direccion, $poblacion, $provincia, $codigoPostal, $pass);
+            $resultado = $auth->registrarUsuario($usuario, $email, $dni, $direccion, $poblacion, $provincia, $codigoPostal, $pass);
             if ($resultado === 3) {
                 echo json_encode(["resp" => 3, "message" => "usuario existente"]);
             } elseif ($resultado === true) {
@@ -40,6 +40,20 @@ switch ($accion) {
                 echo json_encode(["resp" => false, "message" => "ha surgido un error"]);
             }
 
+        }
+        break;
+
+    case "comprobarUsuario":
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $datos = json_decode(file_get_contents("php://input"), true);
+            $email = $datos['email'];
+
+            $resultado = $auth->comprobarUsuario($email);
+            if ($resultado == true) {
+                echo json_encode(["resp" => true]);
+            } else {
+                echo json_encode(["resp" => false]);
+            }
         }
         break;
 
@@ -68,7 +82,24 @@ switch ($accion) {
 
         break;
     case "modificarUsuario":
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            $nombre = $_POST['usuario'];
+            $email = $_POST['correo'];
+            $dni = $_POST['dni'];
+            $direccion = $_POST['direccion'];
+            $poblacion = $_POST['poblacion'];
+            $provincia = $_POST['provincia'];
+            $codigo_postal = $_POST['CP'];
 
+            $resultado = $usuarios->modificarUsuario($nombre, $email, $dni, $direccion, $poblacion, $provincia, $codigo_postal, $id);
+            if ($resultado == 1) {
+                echo json_encode(["resp" => true, "message" => "usuario editado correctamente!"]);
+            } else {
+                echo json_encode(["resp" => false, "message" => "error al modificar usuario"]);
+            }
+
+        }
         break;
     case "obtenerUsuario":
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {

@@ -29,9 +29,11 @@ formulario.addEventListener("submit", function (event) {
                 console.log(data);
 
                 if (data.resp === true) {
-                    divError.style.display = "none";
-                    divExito.innerText = "Usuario logeado con exito!";
-                    divExito.style.display = "block";
+                    Swal.fire({
+                        icon: "success",
+                        title: "Bienvenido!",
+                        text: "Logueado con exito"
+                    });
                     setTimeout(function () {
                         if (data.rol === "admin") {
                             location.href = "../views/adminviews/admin.view.php";
@@ -43,21 +45,31 @@ formulario.addEventListener("submit", function (event) {
                         localStorage.setItem('provincia', data.provincia);
                     }
                 } else if (data.resp === 1) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Vaya...",
+                        text: "Contraseña incorrecta!"
+                    });
                     console.log(data.message);
-                    divError.style.display = "block";
-                    divError.textContent = "Contraseña incorrecta";
                 } else if (data.resp === 0) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Vaya...",
+                        text: "Correo inexistente"
+                    });
                     console.log(data.message);
-                    divError.style.display = "block";
-                    divError.textContent = "Correo inexistente";
                 }
             })
             .catch(error => {
-                divError.style.display = "block";
-                divError.textContent = "Error inesperado, intentelo nuevamente más tarde!";
+
+                Swal.fire({
+                    title: "Error inesperado",
+                    text: "Intentelo de nuevo más tarde!",
+                    icon: "question"
+                });
                 console.error("Error:", error)
             });
-
     }
 });
 

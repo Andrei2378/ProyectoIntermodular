@@ -44,16 +44,17 @@ class Usuariosclass
         return $usuario;
     }
 
-    public function modificarUsuario($nombre, $email, $pass, $direccion, $poblacion, $provincia, $codigo_postal, $rol, $id)
+    public function modificarUsuario($nombre, $email, $dni, $direccion, $poblacion, $provincia, $codigo_postal, $id)
     {
         $consulta = $this->conexion->prepare('UPDATE usuarios
-                                            SET nombre = ?, email = ?, pass = ?, direccion = ?, poblacion = ?, provincia = ?, codigo_postal = ?, rol = ? 
-                                            WHERE id_usuario = ?');
-        $consulta->bind_param('sssssssi', $nombre, $email, $pass, $direccion, $poblacion, $provincia, $codigo_postal, $rol, $id);
+                                        SET nombre = ?, email = ?, dni = ?, direccion = ?, poblacion = ?, provincia = ?, codigo_postal = ?
+                                        WHERE id_usuario = ?');
+        $consulta->bind_param('sssssssi', $nombre, $email, $dni, $direccion, $poblacion, $provincia, $codigo_postal, $id);
         if ($consulta->execute()) {
-            $result = $consulta->get_result();
+            return true;
+        } else {
+            return false;
         }
-        return $result;
     }
 
 }

@@ -1,3 +1,4 @@
+/*
 // Obtener el modal
 let modal = document.getElementById("myModal");
 
@@ -32,3 +33,4 @@ window.onclick = function (event) {
         }, 500); // Esperamos a que la animación termine antes de ocultar el modal
     }
 }
+*/

@@ -21,11 +21,12 @@ function renderizarUsusarios(data) {
                             <div class="card-body">
                                 <h2 class="card-title"><input type='hidden' name='nombre' value='${user.nombre}'/> ${user.nombre} </h2>
                                 <p class="card-text"><input type='hidden' name='correo' value='${user.email}'/>Correo: ${user.email} </p>
+                                <p class="card-text"><input type='hidden' name='correo' value='${user.dni}'/>Correo: ${user.dni} </p>
                                 <p class="card-text"><input type='hidden' name='direccion' value='${user.direccion}'/>Direccion: ${user.direccion} </p>
                                 <p class="card-text"><input type='hidden' name='poblacion' value='${user.poblacion}'/>Poblacion: ${user.poblacion} </p>
                                 <p class="card-text"><input type='hidden' name='provincia' value='${user.provincia}'/>Provincia: ${user.provincia} </p>
                                 <p class="card-text"><input type='hidden' name='codigo_postal' value='${user.codigo_postal}'/>Codigo postal: ${user.codigo_postal} </p>
-                                <a href='./modificar.php?id=${user.id_usuario}' class="btn btn-primary" name="modificar">Modificar</a>
+                                <a href='./modificarusuarios.php?id=${user.id_usuario}' class="btn btn-primary" name="modificar">Modificar</a>
                             </div>
                         </div>
                     </div>

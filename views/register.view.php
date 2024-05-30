@@ -21,6 +21,7 @@
     <label>
       <input placeholder=""  id="correo" name="correo" type="email" class="input" />
       <span>Correo</span>
+      <small id="mensaje"></small>
     </label>
 
     <label>
@@ -58,12 +59,13 @@
       <span>Confirmar Contraseña</span>
     </label>
 
-    <button class="submit" type="submit">Submit</button>
+    <button id="boton" class="submit" type="submit">Submit</button>
     <p class="signin">
       Ya tienes una cuenta? <a href="login.view.php">Sign in</a>
     </p>
   </form>
   <script defer src="../js/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

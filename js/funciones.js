@@ -2,6 +2,7 @@ let currentPage = 1;
 let numElementos = 10;
 let totalPaginas = 0;
 
+
 function solicitudApi(page) {
     //Hacemos el fetch del listado de plantas
     fetch("https://perenual.com/api/species-list?key=sk-moqF664646f3269423897&edible=1&page=" + page)
@@ -175,6 +176,17 @@ function elTiempo(event) {
         });
 }
 
-
-
 solicitudApi(currentPage);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loaderWrapper = document.getElementById('loader-wrapper');
+    const main = document.getElementById('main');
+
+    // Simular la carga de contenido con un retraso de 3 segundos (3000 ms)
+    setTimeout(function () {
+        loaderWrapper.style.display = 'none';
+        main.style.display = 'block';
+    }, 1000)
+    // Ajusta el tiempo según sea necesario
+});
+

@@ -90,15 +90,19 @@ include '../verificarsesion.php';
         </nav>
 
     </header>
-    
-    <main id="main">
+
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <main id="main" style="display: none;">
 
     </main>
 
     <!-- Ventana Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            
+
         </div>
     </div>
 
@@ -107,9 +111,10 @@ include '../verificarsesion.php';
         <div id="numeros"></div>
         <button id="btn-next">Siguiente</button>
     </div>
+
 </body>
 <script src="../js/funciones.js" defer></script>
-<script src="../js/modal.js" defer></script>
+<script src="../js/modalTiempo.js" defer></script>
 <script src="../js/cerrarSesion.js" defer></script>
 
 </html>

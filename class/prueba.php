@@ -4,8 +4,9 @@ include_once '../class/Authclass.php';
 $usuarios = new Usuariosclass();
 $registrar = new Authclass();
 
-$resultado = $registrar->registrarUsuario("bbbb", "zzzzzz@gmail.com","123", "direccion", "poblacion", "09400", "Madrid" );
+$resultado = $usuarios->modificarUsuario("bbbb", "ddddd@gmail.com", "direccion", "poblacion", "provincia23", "09444", 2);
 
+echo $resultado;
 
 
 /*

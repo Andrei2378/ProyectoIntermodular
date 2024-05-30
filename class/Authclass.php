@@ -32,7 +32,7 @@ class Authclass
      * 
      * @return [boolean]
      */
-    public function registrarUsuario($nombreUsuario, $email, $direccion, $poblacion, $provincia, $codigoPostal, $pass)
+    public function registrarUsuario($nombreUsuario, $email, $dni, $direccion, $poblacion, $provincia, $codigoPostal, $pass)
     {
         // Encriptar la contraseña usando SHA-256
         $passHash = hash('sha256', $pass);
@@ -55,13 +55,13 @@ class Authclass
             $usuarioStmt->close();
 
             // Preparar la consulta SQL para insertar el nuevo usuario
-            $consulta = $this->conexion->prepare("INSERT INTO usuarios (nombre, email, pass, direccion, poblacion, codigo_postal, provincia) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $consulta = $this->conexion->prepare("INSERT INTO usuarios (nombre, email, dni, pass, direccion, poblacion, codigo_postal, provincia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             if ($consulta === false) {
                 // Manejo del error de preparación de la consulta
                 error_log($this->conexion->error);
                 return false;
             }
-            $consulta->bind_param("sssssss", $nombreUsuario, $email, $passHash, $direccion, $poblacion, $codigoPostal, $provincia);
+            $consulta->bind_param("ssssssss", $nombreUsuario, $email, $dni, $passHash, $direccion, $poblacion, $codigoPostal, $provincia);
 
             // Ejecutar la consulta y verificar si fue exitosa
             if ($consulta->execute()) {
@@ -73,6 +73,28 @@ class Authclass
                 $consulta->close();
                 return false;
             }
+        }
+    }
+
+    public function comprobarUsuario($email)
+    {
+        // Comprobar si el usuario existe
+        $usuarioStmt = $this->conexion->prepare('SELECT * FROM usuarios WHERE email = ?');
+        if ($usuarioStmt === false) {
+            // Manejo del error de preparación de la consulta
+            error_log($this->conexion->error);
+            return false;
+        }
+        $usuarioStmt->bind_param('s', $email);
+        $usuarioStmt->execute();
+        $resultado = $usuarioStmt->get_result();
+
+        if ($resultado->num_rows > 0) {
+            $usuarioStmt->close();
+            return true; // Usuario ya existe
+        } else {
+            $usuarioStmt->close();
+            return false;
         }
     }
 

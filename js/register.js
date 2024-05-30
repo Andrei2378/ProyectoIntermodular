@@ -1,4 +1,6 @@
 let formulario = document.querySelector(".form");
+const validacionGmail = /^[^\s@]+@gmail\.com$/;
+const validacionDNI = /^[0-9]{8}[A-Z]$/;
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -14,9 +16,6 @@ formulario.addEventListener("submit", function (event) {
     let divError = document.getElementById("error");
     let divExito = document.getElementById("exito");
 
-    const validacionDNI = /^[0-9]{8}[A-Z]$/;
-    const validacionGmail = /^[^\s@]+@gmail\.com$/;
-
     let errores = new Map();
 
     if (usuario.value == "") {
@@ -24,19 +23,10 @@ formulario.addEventListener("submit", function (event) {
         usuario.style.border = "2px solid red";
     }
 
-    if (correo.value == "") {
-        errores.set("Correo_vacio", new Error("El correo esta vacío"));
-        correo.style.border = "2px solid red";
-    } else if (validacionGmail.test(correo.value) == false) {
-        errores.set("Correo_invalido", new Error("El correo no es válido"));
-        correo.style.border = "2px solid red";
-    }
-
     if (validacionDNI.test(DNI.value) === false) {
         errores.set("DNI_invalido", new Error("El DNI no es válido"));
         DNI.style.border = "2px solid red";
     }
-
 
     if (direccion.value == "") {
         errores.set("direccion_vacia", new Error("La dirección esta vacía"));
@@ -82,12 +72,15 @@ formulario.addEventListener("submit", function (event) {
         divError.style.display = "block";
         window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
+
+        divExito.innerHTML = "Usuario registrado correctamente!";
+        divExito.style.display = "block";
+
         //Recolectamos los datos del formulario para enviarlos al servidor
         let formData = new FormData(formulario);
-        for(let [key, value] of formData.entries()){
+        for (let [key, value] of formData.entries()) {
             console.log(key, value);
         }
-
         fetch("../api/users.php?accion=registrarUsuario", {
             method: "POST",
             body: formData
@@ -113,7 +106,59 @@ formulario.addEventListener("submit", function (event) {
             .catch(error => {
                 divError.style.display = "block";
                 divError.textContent = "Error inesperado, intentelo nuevamente más tarde!";
+                window.scrollTo({ top: 0, behavior: "smooth" });
                 console.error("Error:", error);
             });
     }
 });
+
+document.addEventListener("input", function () {
+
+    let email = document.getElementById("correo").value;
+    let mensaje = document.getElementById("mensaje");
+    let boton = document.getElementById("boton");
+
+    if (validacionGmail.test(email) == false) {
+        mensaje.innerHTML = "Correo mal formado";
+        mensaje.style.color = "red";
+        boton.disabled = true;
+        boton.style.backgroundColor = "#549258";
+    } else {
+        mensaje.innerText = "Correo correcto";
+        mensaje.style.color = "green";
+        boton.disabled = false;
+        boton.style.backgroundColor = "#41e15c";
+    }
+
+    fetch("../api/users.php?accion=comprobarUsuario", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email })
+    })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data);
+            if (data.resp === true) {
+                mensaje.innerText = "";
+                if (email != "") {
+                    mensaje.innerText = "Correo ya existente";
+                    mensaje.style.color = "red";
+                    boton.disabled = true;
+                    boton.style.backgroundColor = "#549258";
+                } else {
+                    mensaje.innerText = "Correo vacio";
+                    mensaje.style.color = "red";
+                    boton.disabled = true;
+                    boton.style.backgroundColor = "#549258";
+                }
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                title: "Error inesperado",
+                text: "Intentelo de nuevo más tarde!",
+                icon: "question"
+            });
+            console.error("Error:", error);
+        });
+})
