@@ -7,6 +7,22 @@
   <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/plantas.css" />
   <link rel="stylesheet" href="../css/darkMode.css" />
+  <style>
+    #chistes {
+        font-family: 'Arial', sans-serif;
+        font-size: 18px;
+        color: #333;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px auto;
+        text-align: center;
+    }
+</style>
+
   <title>Inicio</title>
 </head>
 
@@ -54,9 +70,12 @@
     </a>
   </div>
 
+  <div id="chistes"></div>
+
 </body>
 
 <script defer src="../js/darkMode.js"></script>
+<script defer src="../js/chistesChuckNorris.js"></script>
 
 
 </html>

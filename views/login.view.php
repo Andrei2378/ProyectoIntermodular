@@ -23,7 +23,7 @@
             <span>Contraseña</span>
             <small id="validPass"></small>
         </label>
-        <button type="submit" class="submit" name="iniciar">Submit</button>
+        <button id="iniciar" type="submit" class="submit" name="iniciar">Submit</button>
         <p class="signin">
             Aún no tienes una cuenta? <a href="register.view.php">Create Account</a>
         </p>

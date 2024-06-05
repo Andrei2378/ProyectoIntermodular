@@ -2,7 +2,6 @@ let currentPage = 1;
 let numElementos = 10;
 let totalPaginas = 0;
 
-
 function solicitudApi(page) {
     //Hacemos el fetch del listado de plantas
     fetch("https://perenual.com/api/species-list?key=sk-moqF664646f3269423897&edible=1&page=" + page)
@@ -13,20 +12,31 @@ function solicitudApi(page) {
             return res.json(); //Devuelve al siguiente .then la respuesta convertida a json
         })
         .then((data) => { //Manejamos la información
-
-            //mostrar plantas
-            let main = document.getElementById("main");
-            main.innerHTML = "";
-            for (let i = 0; i < numElementos; i++) {
-                if (data.data[i]) {
-                    mostrarPlantas(data.data[i]);
+            if (data) {
+                //mostrar plantas
+                let main = document.getElementById("main");
+                main.innerHTML = "";
+                for (let i = 0; i < numElementos; i++) {
+                    if (data.data[i]) {
+                        mostrarPlantas(data.data[i]);
+                    }
                 }
+                totalPaginas = data.last_page;
+                updatesPaginacion();
+            } else {
+                Swal.fire({
+                    title: "Sin datos!",
+                    text: "Pruebe de nuevo!",
+                    icon: "question"
+                });
             }
-
-            totalPaginas = data.last_page;
-            updatesPaginacion();
         })
         .catch((err) => { //Recoge y muestra el error
+            Swal.fire({
+                title: "Sin datos!",
+                text: "Pruebe de nuevo!",
+                icon: "question"
+            });
             console.log("Catch " + err);
         })
 }
@@ -122,71 +132,18 @@ function mostrarPlantas(planta) {
     });
 }
 
-document.getElementById("prov").addEventListener("change", elTiempo);
 
-function elTiempo(event) {
-    let idProvincia = event.target.value;
-    fetch("https://www.el-tiempo.net/api/json/v2/provincias/" + idProvincia)
-        .then((res) => {
-            if (!res.ok) { // comprobamos si la URL es correcta
-                throw new Error("Error: " + res.status); //Devuelve el estado del error
-            }
-            return res.json(); //Devuelve al siguiente .then la respuesta convertida a json
-        })
-        .then((data) => {
-            let minima = data.ciudades[0].temperatures.min;
-            let maxima = data.ciudades[0].temperatures.max;
-            let estadoCielo = data.ciudades[0].stateSky.description;
-
-            let iconoCielo;
-            switch (estadoCielo.toLowerCase()) {
-                case 'despejado':
-                    iconoCielo = '☀️';
-                    break;
-                case 'nubes':
-                case 'nublado':
-                    iconoCielo = '☁️';
-                    break;
-                case 'lluvia':
-                    iconoCielo = '🌧️';
-                    break;
-                case 'tormenta':
-                    iconoCielo = '⛈️';
-                    break;
-                case 'nieve':
-                    iconoCielo = '❄️';
-                    break;
-                default:
-                    iconoCielo = '🌈';
-            }
-
-            document.getElementById("tiempo").innerHTML = `
-                <div>
-                    <span class="close">&times;</span>
-                    <h2>Información Meteorológica</h2>
-                    <p><strong>Temperatura mínima:</strong> ${minima}°C</p>
-                    <p><strong>Temperatura máxima:</strong> ${maxima}°C</p>
-                    <p><strong>Estado del cielo:</strong> ${estadoCielo} ${iconoCielo}</p>
-                </div>
-            `;
-        })
-        .catch((error) => {
-            console.error("Error fetching data: ", error);
-            document.getElementById("tiempo").innerText = "Error al obtener los datos del tiempo.";
-        });
-}
 
 solicitudApi(currentPage);
 
 document.addEventListener("DOMContentLoaded", function () {
     const loaderWrapper = document.getElementById('loader-wrapper');
     const main = document.getElementById('main');
-
-    // Simular la carga de contenido con un retraso de 3 segundos (3000 ms)
     setTimeout(function () {
         loaderWrapper.style.display = 'none';
         main.style.display = 'block';
-    }, 1000)
-    // Ajusta el tiempo según sea necesario
+    }, 1000);
+
 });
+
 

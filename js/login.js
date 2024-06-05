@@ -5,7 +5,6 @@ formulario.addEventListener("submit", function (event) {
     event.preventDefault();
 
     let divError = document.getElementById("error");
-    let divExito = document.getElementById("exito");
 
 
     if (user.value === "" || pass.value === "") {
@@ -75,25 +74,32 @@ formulario.addEventListener("submit", function (event) {
 
 document.getElementById("pass").addEventListener("input", function () {
     let passReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    let iniciar = document.getElementById("iniciar");
 
     let validPass = document.getElementById("validPass");
     validPass.style.color = "red";
 
     if (pass.value == "") {
         validPass.innerText = "La contraseña no debe estar vacia";
+        iniciar.disabled = true;
     } else if (!/(?=.*[a-z])/.test(pass.value)) {
         validPass.innerText = "La contraseña debe tener almenos una minuscula";
+        iniciar.disabled = true;
     }
     else if (!/(?=.*[A-Z])/.test(pass.value)) {
         validPass.innerText = "La contraseña debe tener almenos una mayuscula";
+        iniciar.disabled = true;
     }
     else if (!/(?=.*\d)/.test(pass.value)) {
         validPass.innerText = "La contraseña debe tener almenos un numero";
+        iniciar.disabled = true;
     }
     else if (pass.value.length < 8) {
         validPass.innerText = "La contraseña debe tener minimo 8 caracteres";
+        iniciar.disabled = true;
     } else {
         validPass.innerText = "La contraseña es valida";
         validPass.style.color = "green";
+        iniciar.disabled = false;
     }
 })
