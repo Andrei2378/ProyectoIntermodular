@@ -92,97 +92,33 @@ document.getElementById("btn-next").addEventListener("click", function () {
 function mostrarPlantas(planta) {
     let plantaHtml = "";
     let id_planta = planta.id;
-    let foto = planta.default_image.small_url;
-    let nombre = planta.common_name;
-    let nombre_cientifico = planta.scientific_name;
-    let div = document.getElementById("plantas-container");
-    div.classList.add("info_planta");
-
-    if (foto == undefined) {
-        foto = "../img/plantaPorDefecto.jpg";
-    }
-
-    plantaHtml =
-        `<div class="info-planta text-center">
-            <figure>
-                <img id="${id_planta}" src="${foto}" alt="Imagen de planta">
-            </figure>
-            <div class="nombres">
-                <p class="nombre-comun">${nombre}</p>
-                <p class="nombre-cientifico">${nombre_cientifico}</p>
-            </div>
-        </div>`;
-
-    div.innerHTML += plantaHtml;
-    document.querySelector("#main").appendChild(div);
-    document.getElementById(id_planta).style.cursor = "pointer";
-
-    document.getElementById(id_planta).addEventListener("click", function (event) {
-        console.log(event.target.id);
-        let id = event.target.id;
-        let idJSON = JSON.stringify(id);
-        localStorage.setItem('id', idJSON);
-        location.href = "../views/planta.view.php";
-    });
-}
-
-
-
-/*
-function mostrarPlantas(planta) {
-    let plantaHtml = "";
-    let id_planta = planta.id;
-    let foto = planta.default_image.small_url;
-    let nombre = planta.common_name;
-    let nombre_cientifico = planta.scientific_name;
+    let foto = planta.default_image.small_url || "../img/plantaPorDefecto.jpg";
+    let nombre = planta.common_name || "Nombre no disponible";
+    let nombre_cientifico = planta.scientific_name || "Nombre científico no disponible";
     let div = document.createElement("div");
-    div.classList.add("info_planta");
+    div.classList.add("info_planta"); // Asegúrate de que esta clase esté en el CSS
     div.setAttribute("id", "divPlanta");
 
-    if (foto == undefined) {
-        foto = "../img/plantaPorDefecto.jpg";
-    }
-
-    plantaHtml =
-        `<div class="container my-5">
-    <div class="row justify-content-center">
-        <!-- Itera este contenedor para cada planta -->
-        <div class="col-6 col-sm-4 col-md-2 mb-4">
-            <div class="info-planta text-center">
-                <figure>
-                    <img id="${id_planta}" src="${foto}" alt="Imagen de planta">
-                </figure>
-                <div class="nombres">
-                    <p class="nombre-comun">${nombre}</p>
-                    <p class="nombre-cientifico">${nombre_cientifico}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        
-        `;
-    div.innerHTML += plantaHtml;
+    plantaHtml = `
+        <figure> 
+            <img id='${id_planta}' src='${foto}' alt='Foto de planta'>
+        </figure>
+        <div class='nombres'>
+            <p class='comun'>${nombre}</p>
+            <p class='cientifico'>${nombre_cientifico}</p>
+        </div>`;
+    div.innerHTML = plantaHtml;
     document.getElementById("main").appendChild(div);
+
     document.getElementById(id_planta).style.cursor = "pointer";
 
-    document.getElementById(id_planta).addEventListener("click", function (event) {
-        console.log(event.target.id);
-        // accedemos al objeto event donde hay informacion sobre el evento,
-        // dentro de target podemos encontrar el id de la imagen
-        let id = event.target.id;
-        //Pasamos el id por URL
-        //location.href = "planta.php?id=" + id;
-
-        // Convertimos el id en una cadena JSON
-        let idJSON = JSON.stringify(id);
-        // Guardamos el array definido en localStorage
-        localStorage.setItem('id', idJSON);
-
+    document.getElementById(id_planta).addEventListener("click", function () {
+        let idJSON = JSON.stringify(id_planta);
+        localStorage.setItem("id", idJSON);
         location.href = "../views/planta.view.php";
     });
 }
-*/
+
 
 
 solicitudApi(currentPage);
