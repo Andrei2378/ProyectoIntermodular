@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #3a5a40; /* Verde oscuro */
+}
+.navbar-brand, .nav-link {
+    color: #e9ecef !important; /* Blanco suave */
+}
+
+.nav-link:hover {
+    color: #74c69d !important; /* Verde claro */
+}
+
+img {
+    width: 30px;
+    margin-right: 10px;
+  }

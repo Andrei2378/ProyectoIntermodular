@@ -1,11 +1,11 @@
 <?php
 
-include_once 'Conexionmysqli.php';
+include_once 'ConexionMysqli.php';
 
 /**
  * [Creamos la clase en la que englobaremos toda la funcionalidad de los usuarios]
  */
-class Usuariosclass
+class UsuariosClass
 {
     private $conexion;
 
@@ -14,7 +14,7 @@ class Usuariosclass
      */
     public function __construct()
     {
-        $con = new Conexionmysqli();
+        $con = new ConexionMysqli();
         $this->conexion = $con->obtenerConexion();
     }
 
@@ -50,6 +50,17 @@ class Usuariosclass
                                         SET nombre = ?, email = ?, dni = ?, direccion = ?, poblacion = ?, provincia = ?, codigo_postal = ?
                                         WHERE id_usuario = ?');
         $consulta->bind_param('sssssssi', $nombre, $email, $dni, $direccion, $poblacion, $provincia, $codigo_postal, $id);
+        if ($consulta->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function eliminarUsuario($id)
+    {
+        $consulta = $this->conexion->prepare('DELETE FROM usuarios WHERE id_usuario = ?');
+        $consulta->bind_param('i', $id);
         if ($consulta->execute()) {
             return true;
         } else {

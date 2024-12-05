@@ -1,7 +1,7 @@
 .switch {
   position: absolute;
   top: 20px;
-  left: 20px;
+  right: 20px;
   width: 60px;
   height: 33px;
 }
@@ -52,22 +52,22 @@ input:checked + .slider::before {
   transform: translateX(26px);
 }
 
-body.dark {
+.dark {
   background-color: rgba(0, 0, 0, 0.37);
 }
 
-body.dark .window {
+.dark .window {
   background-color: rgb(0, 0, 0);
 }
 
-body.dark .footer p {
+.dark .footer p {
   color: rgb(60 65 75);
 }
 
-body.dark .input-line {
+.dark .input-line {
   background-color: rgb(17, 18, 20);
   color: white;
 }
-body.dark .input-line::placeholder {
+.dark .input-line::placeholder {
   color: rgba(255, 255, 255, 0.42);
 }

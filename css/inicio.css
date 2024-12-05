@@ -1,0 +1,90 @@
+        /* Colores personalizados */
+        :root {
+            --verde-oscuro: #355E3B;
+            --verde-claro: #5F8D4E;
+            --beige-claro: #F9F5E7;
+            --marron-cálido: #bd704c;
+            --texto-gris: #555;
+        }
+
+        /* Estilos generales */
+        body {
+            background-color: var(--beige-claro);
+            color: var(--texto-gris);
+            font-family: Arial, sans-serif;
+        }
+
+          .navbar {
+            background-color: #3a5a40; /* Verde oscuro */
+            color: #e9ecef;
+          }
+          .navbar-brand {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: #e9ecef !important;
+          }
+          .navbar-brand img {
+            width: 30px;
+            margin-right: 10px;
+          }
+
+        /* Sección principal */
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--verde-claro);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .icon-container img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--verde-oscuro);
+            margin-top: 10px;
+        }
+
+        .section-description {
+            color: var(--texto-gris);
+        }
+
+        /* Tarjetas */
+        .card {
+            background-color: var(--beige-claro);
+            border: 2px solid var(--verde-oscuro);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .card:hover{
+            background-color: var(--marron-cálido);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .card:hover h3{
+            color: var(--beige-claro);
+        }
+
+        .card:hover p{
+            color: var(--beige-claro);
+        }
+        /* Márgenes entre tarjetas */
+        .row {
+            margin-top: 40px;
+        }
+
+        /* Ajuste de imágenes */
+        .icon-container {
+            background-color: var(--verde-claro);
+        }

@@ -3,7 +3,7 @@
 /**
  * [Creamos la conexión a la base de datos]
  */
-class Conexionmysqli
+class ConexionMysqli
 {
     private $dbHost = 'localhost';
     private $dbName = 'jardin';

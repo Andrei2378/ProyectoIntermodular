@@ -4,4 +4,5 @@ session_start();
 $_SESSION['logueado'] = ' ';
 session_unset();
 session_destroy();
-echo json_encode(["success" => true]);
+header("Location: ../views/login.view.php");
+//echo json_encode(["success" => true]);

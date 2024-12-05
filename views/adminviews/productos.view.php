@@ -44,11 +44,11 @@
 <script src="" defer></script>
 
 <?php
-include '../../class/Productsclass.php';
+include '../../class/ProductsClass.php';
 
-$productos = new Productsclass();
-
-$obtenerProductos = $productos->obtenerProductos();
+$productos = new ProductsClass();
+$cat = $_GET['categoria'];
+$obtenerProductos = $productos->obtenerProductos($cat, $limite, $desplazamiento);
 
 echo '<div class="container">';
 $contador = 0; // Contador para controlar las tarjetas por fila

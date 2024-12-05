@@ -1,12 +1,12 @@
 <?php
-include_once '../class/Usuariosclass.php';
-include_once '../class/Authclass.php';
+include_once '../class/UsuariosClass.php';
+include_once '../class/AuthClass.php';
 
 
 $accion = isset($_GET['accion']) ? $_GET['accion'] : ""; //Obtenemos la accion
 
-$usuarios = new Usuariosclass();
-$auth = new Authclass();
+$usuarios = new UsuariosClass();
+$auth = new AuthClass();
 
 switch ($accion) {
     case "obtenerUsuarios":
@@ -98,9 +98,21 @@ switch ($accion) {
             } else {
                 echo json_encode(["resp" => false, "message" => "error al modificar usuario"]);
             }
-
         }
         break;
+
+    case "eliminarUsuario":
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['eliminar'];
+
+            $resultado = $usuarios->eliminarUsuario($id);
+            if ($resultado == 1) {
+                echo json_encode(["resp" => true, "message" => "usuario eliminado correctamente"]);
+            } else {
+                echo json_encode(["resp" => false, "message" => "error al eliminar"]);
+            }
+        }
+
     case "obtenerUsuario":
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $id = $_GET['id'];
@@ -112,6 +124,9 @@ switch ($accion) {
             }
         }
         break;
+    
+
+
 
     default:
         echo json_encode(["resp" => false, "message" => "Accion no valida"]);

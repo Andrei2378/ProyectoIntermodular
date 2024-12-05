@@ -1,10 +1,11 @@
 <?php
-include_once '../class/Usuariosclass.php';
-include_once '../class/Authclass.php';
-$usuarios = new Usuariosclass();
-$registrar = new Authclass();
+include_once '../class/UsuariosClass.php';
+include_once '../class/AuthClass.php';
+$usuarios = new UsuariosClass();
+$auth = new AuthClass();
 
-$resultado = $usuarios->modificarUsuario("bbbb", "ddddd@gmail.com", "direccion", "poblacion", "provincia23", "09444", 2);
+
+$resultado = $auth->verificarLogin("Andrei@gmail.com", "Andrei1234");
 
 echo $resultado;
 

@@ -1,12 +1,12 @@
 <?php
 
-include_once 'Conexionmysqli.php';
+include_once 'ConexionMysqli.php';
 session_start();
 
 /**
  * [Creamos la clase para poder autentificar los usuarios]
  */
-class Authclass
+class AuthClass
 {
 
     private $conexion;
@@ -16,7 +16,7 @@ class Authclass
      */
     public function __construct()
     {
-        $con = new Conexionmysqli();
+        $con = new ConexionMysqli();
         $this->conexion = $con->obtenerConexion();
     }
 
@@ -117,6 +117,7 @@ class Authclass
             $fila = $resultado->fetch_assoc();
             $passHash = hash('sha256', $pass);
             if ($passHash === $fila['pass']) {
+                $_SESSION['idUsuario'] = $fila['id_usuario'];
                 $_SESSION['provincia'] = $fila['provincia'];
                 $_SESSION['loguedo'] = true;
                 if ($fila["rol"] == "admin") {

@@ -1,5 +1,5 @@
 <?php
-include './class/Authclass.php';
+include './class/AuthClass.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    $auth = new Authclass();
-    $registroExitoso = $auth->registrarUsuario($usuario, $email, $pass, $direccion, $poblacion, $provincia, $codigoPostal);
+    $auth = new AuthClass();
+    $registroExitoso = $auth->registrarUsuario($usuario, $email, $dni, $direccion, $poblacion, $provincia, $codigoPostal, $pass);
 
     if ($registroExitoso) {
         header('Location: ./views/login.view.php');

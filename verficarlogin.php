@@ -1,11 +1,11 @@
 <?php
 session_start();
-include 'class/Authclass.php';
+include 'class/AuthClass.php';
 if (isset($_POST['iniciar'])) {
     $usuario = $_POST['usuario'];
     $pass = $_POST['contraseña'];
 
-    $auth = new Authclass();
+    $auth = new AuthClass();
     if ($auth->verificarLogin($usuario, $pass)) {
         header('Location: /views/inicio.view.php');
     } else {

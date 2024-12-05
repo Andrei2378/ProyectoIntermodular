@@ -28,12 +28,12 @@
 
 <?php
 
-include '../../class/Productsclass.php';
+include '../../class/ProductsClass.php';
 
 if (isset($_POST['modificar'])) {
     $id = $_POST['id'];
 
-    $producto = new Productsclass();
+    $producto = new ProductsClass();
 
     $obtenerproducto = $producto->productPorId($id);
     echo '<div class="container">';
@@ -69,6 +69,12 @@ if (isset($_POST['modificar'])) {
     if ($contador % 3 != 0) {
         echo '</div>'; // Cierre de div.row
     }
+
+    echo '<div>';
+    if($pag > 1){
+        echo '<a href=""></a>';
+    }
+    echo '</div>';
 
     echo '</div>'; // Cierre de div.container
 

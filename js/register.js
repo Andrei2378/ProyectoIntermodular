@@ -159,6 +159,6 @@ document.addEventListener("input", function () {
                 text: "Intentelo de nuevo más tarde!",
                 icon: "question"
             });
-            console.error("Error:", error);
+            console.log("Error:", error);
         });
 })

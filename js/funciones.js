@@ -4,7 +4,7 @@ let totalPaginas = 0;
 
 function solicitudApi(page) {
     //Hacemos el fetch del listado de plantas
-    fetch("https://perenual.com/api/species-list?key=sk-moqF664646f3269423897&edible=1&page=" + page)
+    fetch("https://perenual.com/api/species-list?key=sk-Hc53674f48aba08083897&edible=1&page=" + page)
         .then((res) => {
             if (!res.ok) { // comprobamos si la URL es correcta
                 throw new Error("Error: " + res.status); //Devuelve el estado del error
@@ -95,6 +95,46 @@ function mostrarPlantas(planta) {
     let foto = planta.default_image.small_url;
     let nombre = planta.common_name;
     let nombre_cientifico = planta.scientific_name;
+    let div = document.getElementById("plantas-container");
+    div.classList.add("info_planta");
+
+    if (foto == undefined) {
+        foto = "../img/plantaPorDefecto.jpg";
+    }
+
+    plantaHtml =
+        `<div class="info-planta text-center">
+            <figure>
+                <img id="${id_planta}" src="${foto}" alt="Imagen de planta">
+            </figure>
+            <div class="nombres">
+                <p class="nombre-comun">${nombre}</p>
+                <p class="nombre-cientifico">${nombre_cientifico}</p>
+            </div>
+        </div>`;
+
+    div.innerHTML += plantaHtml;
+    document.querySelector("#main").appendChild(div);
+    document.getElementById(id_planta).style.cursor = "pointer";
+
+    document.getElementById(id_planta).addEventListener("click", function (event) {
+        console.log(event.target.id);
+        let id = event.target.id;
+        let idJSON = JSON.stringify(id);
+        localStorage.setItem('id', idJSON);
+        location.href = "../views/planta.view.php";
+    });
+}
+
+
+
+/*
+function mostrarPlantas(planta) {
+    let plantaHtml = "";
+    let id_planta = planta.id;
+    let foto = planta.default_image.small_url;
+    let nombre = planta.common_name;
+    let nombre_cientifico = planta.scientific_name;
     let div = document.createElement("div");
     div.classList.add("info_planta");
     div.setAttribute("id", "divPlanta");
@@ -104,13 +144,24 @@ function mostrarPlantas(planta) {
     }
 
     plantaHtml =
-        `<figure> 
-        <img id='${id_planta}' src='${foto}' alt='foto'>
-        </figure>
-        <div class='nombres'>
-        <p>${nombre}</p>
-        <p>${nombre_cientifico}</p>
-        </div>`;
+        `<div class="container my-5">
+    <div class="row justify-content-center">
+        <!-- Itera este contenedor para cada planta -->
+        <div class="col-6 col-sm-4 col-md-2 mb-4">
+            <div class="info-planta text-center">
+                <figure>
+                    <img id="${id_planta}" src="${foto}" alt="Imagen de planta">
+                </figure>
+                <div class="nombres">
+                    <p class="nombre-comun">${nombre}</p>
+                    <p class="nombre-cientifico">${nombre_cientifico}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        `;
     div.innerHTML += plantaHtml;
     document.getElementById("main").appendChild(div);
     document.getElementById(id_planta).style.cursor = "pointer";
@@ -131,7 +182,7 @@ function mostrarPlantas(planta) {
         location.href = "../views/planta.view.php";
     });
 }
-
+*/
 
 
 solicitudApi(currentPage);

@@ -1,18 +1,18 @@
-let formulario = document.querySelector(".form");
+let formulario = document.getElementById("formulario");
 let user = document.getElementById("user");
 let pass = document.getElementById("pass");
 formulario.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    let divError = document.getElementById("error");
-
-
     if (user.value === "" || pass.value === "") {
-        divError.innerText = "Los campos usuario y contraseña no pueden estar vacios";
-        divError.style.display = "block";
-        user.style.border = "2px solid red";
-        pass.style.border = "2px solid red";
+        Swal.fire({
+            icon: "error",
+            title: "Vaya...",
+            text: "Los campos no pueden estar vacios!"
+        });
+
     } else {
+        console.log(formulario);
         let formData = new FormData(formulario);
 
         for (let dato of formData.entries()) {
@@ -82,21 +82,26 @@ document.getElementById("pass").addEventListener("input", function () {
     if (pass.value == "") {
         validPass.innerText = "La contraseña no debe estar vacia";
         iniciar.disabled = true;
+        iniciar.style.backgroundColor = "#74c69d";
     } else if (!/(?=.*[a-z])/.test(pass.value)) {
         validPass.innerText = "La contraseña debe tener almenos una minuscula";
         iniciar.disabled = true;
+        iniciar.style.backgroundColor = "#74c69d";
     }
     else if (!/(?=.*[A-Z])/.test(pass.value)) {
         validPass.innerText = "La contraseña debe tener almenos una mayuscula";
         iniciar.disabled = true;
+        iniciar.style.backgroundColor = "#74c69d";
     }
     else if (!/(?=.*\d)/.test(pass.value)) {
         validPass.innerText = "La contraseña debe tener almenos un numero";
         iniciar.disabled = true;
+        iniciar.style.backgroundColor = "#74c69d";
     }
     else if (pass.value.length < 8) {
         validPass.innerText = "La contraseña debe tener minimo 8 caracteres";
         iniciar.disabled = true;
+        iniciar.style.backgroundColor = "#74c69d";
     } else {
         validPass.innerText = "La contraseña es valida";
         validPass.style.color = "green";
