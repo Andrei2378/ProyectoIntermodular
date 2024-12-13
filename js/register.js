@@ -5,7 +5,7 @@ const validacionDNI = /^[0-9]{8}[A-Z]$/;
 formulario.addEventListener("submit", function (event) {
     event.preventDefault();
     let usuario = document.getElementById("usuario");
-    let correo = document.getElementById("correo");
+    let email = document.getElementById("correo");
     let DNI = document.getElementById("DNI");
     let direccion = document.getElementById("direccion");
     let poblacion = document.getElementById("poblacion");
@@ -13,7 +13,7 @@ formulario.addEventListener("submit", function (event) {
     let CP = document.getElementById("CP");
     let pass1 = document.getElementById("pass1");
     let pass2 = document.getElementById("pass2");
-    let divError = document.getElementById("error");
+    //let divError = document.getElementById("error");
     let divExito = document.getElementById("exito");
 
     let errores = new Map();
@@ -59,22 +59,22 @@ formulario.addEventListener("submit", function (event) {
     }
 
     // Limpia el contenido de divError
-    divError.innerHTML = "";
+    //divError.innerHTML = "";
 
     // Verifica si hay errores en el Map
     if (errores.size !== 0) {
         // Itera sobre cada valor en el Map
         errores.forEach((error) => {
             // Concatena el mensaje de error al contenido existente de divError
-            divError.innerHTML += `${error.message} <br>`;
+            //divError.innerHTML += `${error.message} <br>`;
         });
         // Muestra divError después de acumular todos los errores
-        divError.style.display = "block";
+        //divError.style.display = "block";
         window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
 
-        divExito.innerHTML = "Usuario registrado correctamente!";
-        divExito.style.display = "block";
+        //divExito.innerHTML = "Usuario registrado correctamente!";
+        //divExito.style.display = "block";
 
         //Recolectamos los datos del formulario para enviarlos al servidor
         let formData = new FormData(formulario);
@@ -89,47 +89,52 @@ formulario.addEventListener("submit", function (event) {
             .then(data => {
                 console.log(data);
                 if (data.resp === true) {
-                    divError.style.display = "none";
-                    divExito.innerText = "Usuario registrado con exito!";
-                    divExito.style.display = "block";
-                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    Swal.fire({
+                        icon: "success",
+                        title: "Bienvenido!",
+                        text: "Registrado con exito!"
+                    });
                     setTimeout(function () {
                         location.href = "../views/login.view.php";
                     }, 2000)
                 } else if (data.resp === 3) {
                     console.log(data.message);
-                    divError.style.display = "block";
-                    divError.textContent = "El correo ya existe";
-                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Correo ya existente!"
+                    });
                 }
             })
             .catch(error => {
-                divError.style.display = "block";
-                divError.textContent = "Error inesperado, intentelo nuevamente más tarde!";
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                Swal.fire({
+                    title: "Error inesperado",
+                    text: "Intentelo de nuevo más tarde!",
+                    icon: "question"
+                });
                 console.error("Error:", error);
             });
     }
 });
-
+/*
 document.addEventListener("input", function () {
 
     let email = document.getElementById("correo").value;
-    let mensaje = document.getElementById("mensaje");
+    //let mensaje = document.getElementById("mensaje");
     let boton = document.getElementById("boton");
 
     if (validacionGmail.test(email) == false) {
-        mensaje.innerHTML = "Correo mal formado";
-        mensaje.style.color = "red";
+       // mensaje.innerHTML = "Correo mal formado";
+        //mensaje.style.color = "red";
         boton.disabled = true;
         boton.style.backgroundColor = "#549258";
     } else {
-        mensaje.innerText = "Correo correcto";
-        mensaje.style.color = "green";
+        //mensaje.innerText = "Correo correcto";
+        //mensaje.style.color = "green";
         boton.disabled = false;
         boton.style.backgroundColor = "#41e15c";
     }
-
+    console.log(email);
     fetch("../api/users.php?accion=comprobarUsuario", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -139,15 +144,15 @@ document.addEventListener("input", function () {
         .then(data => {
             console.log(data);
             if (data.resp === true) {
-                mensaje.innerText = "";
+               // mensaje.innerText = "";
                 if (email != "") {
-                    mensaje.innerText = "Correo ya existente";
-                    mensaje.style.color = "red";
+                  //  mensaje.innerText = "Correo ya existente";
+                   // mensaje.style.color = "red";
                     boton.disabled = true;
                     boton.style.backgroundColor = "#549258";
                 } else {
-                    mensaje.innerText = "Correo vacio";
-                    mensaje.style.color = "red";
+                   // mensaje.innerText = "Correo vacio";
+                   // mensaje.style.color = "red";
                     boton.disabled = true;
                     boton.style.backgroundColor = "#549258";
                 }
@@ -161,4 +166,5 @@ document.addEventListener("input", function () {
             });
             console.log("Error:", error);
         });
-})
+});
+*/

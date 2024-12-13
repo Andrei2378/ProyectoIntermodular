@@ -2,9 +2,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../img/Gardenia.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/navuser.css" />
+
     <style>
-
-
+        .imagen_producto{
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
     </style>
 </header>
 <?php
@@ -37,11 +41,11 @@ foreach ($obtenerProductos as $producto) {
     if ($producto['imagen'] == null || $producto['imagen'] == "" || !$producto['imagen']) {
         $producto['imagen'] = "../img/imagen_por_defecto.png";
     }
+
     echo '<div class="col-md-4 mb-3">';
     echo '<div class="card h-80">'; // Añadido h-100 para asegurar altura uniforme
-    echo '<div class="card-cover overflow-hidden border-2 h-40" style="background-image: url("' . $producto['imagen'] . '");background-repeat: no-repeat;background-size: 100% 100%;">';
-
-    echo '<img src="' . $producto["imagen"] . '" class="card-img-top" alt="' . $producto["nombre"] . '">'; //../img/pala_jardineria.png
+    echo '<div class="card-cover overflow-hidden border-2 h-25" style="background-image: url("' . $producto['imagen'] . '");background-repeat: no-repeat;">';
+    echo '<img src="' . $producto["imagen"] . '" class=" imagen_producto card-img-top" alt="' . $producto["nombre"] . '">'; //../img/pala_jardineria.png
     echo '</div>';
     echo '<div class="card-body">';
     echo '<h5 class="card-title h-10">' . $producto["nombre"] . '</h5>';

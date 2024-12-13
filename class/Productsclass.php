@@ -70,5 +70,59 @@ class ProductsClass
         return $producto;
     }
 
+    public function crearProducto($producto)
+    {
+
+        $nombre = $producto['nombre'];
+        $descripcion = $producto['descripcion'];
+        $precio = $producto['precio'];
+        $imagen = $producto['imagen'];
+        $idCategoria = $producto['id_categoria'];
+
+        $consulta = $this->conexion->prepare('INSERT INTO productos (nombre, descripcion, precio, imagen, id_categoria) 
+                                                    VALUES(?,?,?,?,?)');
+        $consulta->bind_param('ssdsi', $nombre, $descripcion, $precio, $imagen, $idCategoria);
+        if ($consulta->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+    public function modificarProducto($producto)
+    {
+        $nombre = $producto['nombre'];
+        $descripcion = $producto['descripcion'];
+        $precio = $producto['precio'];
+        $idCategoria = $producto['id_categoria'];
+        $idProducto = $producto['id_producto'];
+
+        $consulta = $this->conexion->prepare('UPDATE productos
+                                        SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?
+                                        WHERE id_producto = ?');
+        $consulta->bind_param('ssdii', $nombre, $descripcion, $precio, $idCategoria, $idProducto);
+
+        if ($consulta->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function eliminarProducto($id)
+    {
+        $consulta = $this->conexion->prepare('DELETE FROM productos WHERE id_producto = ?');
+        $consulta->bind_param('i', $id);
+        if ($consulta->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
 }

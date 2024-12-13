@@ -68,4 +68,18 @@ class UsuariosClass
         }
     }
 
+    public function cambiarPass($id, $nuevaPass)
+    {
+
+        $passHash = hash('sha256', $nuevaPass);
+
+        $consulta = $this->conexion->prepare('UPDATE usuarios SET pass = ? WHERE id_usuario = ?');
+        $consulta->bind_param('si', $passHash, $id);
+        if ($consulta->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

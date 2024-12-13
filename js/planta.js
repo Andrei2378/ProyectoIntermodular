@@ -49,7 +49,6 @@ function datosPlanta(info) {
     }
 
     const descripcion = info.description;
-    console.log(tamaño);
 
     if (imagen == undefined) {
         imagen = "../img/plantaPorDefecto.jpg";

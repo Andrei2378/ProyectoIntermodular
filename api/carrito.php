@@ -1,5 +1,8 @@
 <?php
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once '../class/ConexionMysqli.php';
 include_once '../class/CarritoClass.php';
 
@@ -54,9 +57,7 @@ switch ($accion) {
         }
         break;
 
-
 }
-
 
 function obtenerProductos($idUsuario)
 {
@@ -77,7 +78,7 @@ function cantidadProductos($idUsuario)
     $salida = $carrito->contarProductos($idUsuario);
     if (is_null($salida['total_cantidad'])) {
         return 0;
-    }else{
+    } else {
         return $salida['total_cantidad'];
     }
 }

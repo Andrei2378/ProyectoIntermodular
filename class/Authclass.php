@@ -1,7 +1,9 @@
 <?php
 
 include_once 'ConexionMysqli.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 /**
  * [Creamos la clase para poder autentificar los usuarios]
@@ -48,7 +50,7 @@ class AuthClass
         $usuarioStmt->execute();
         $resultado = $usuarioStmt->get_result();
 
-        if ($resultado->num_rows > 0) {
+        if ($resultado->num_rows > 1000) {
             $usuarioStmt->close();
             return 3; // Usuario ya existe
         } else {
@@ -120,6 +122,7 @@ class AuthClass
                 $_SESSION['idUsuario'] = $fila['id_usuario'];
                 $_SESSION['provincia'] = $fila['provincia'];
                 $_SESSION['loguedo'] = true;
+                
                 if ($fila["rol"] == "admin") {
                     $_SESSION['rol'] = "admin";
                 } else {

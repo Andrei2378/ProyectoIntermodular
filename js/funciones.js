@@ -16,6 +16,7 @@ function solicitudApi(page) {
                 //mostrar plantas
                 let main = document.getElementById("main");
                 main.innerHTML = "";
+                console.log(data.data);
                 for (let i = 0; i < numElementos; i++) {
                     if (data.data[i]) {
                         mostrarPlantas(data.data[i]);
@@ -112,11 +113,21 @@ function mostrarPlantas(planta) {
 
     document.getElementById(id_planta).style.cursor = "pointer";
 
-    document.getElementById(id_planta).addEventListener("click", function () {
-        let idJSON = JSON.stringify(id_planta);
-        localStorage.setItem("id", idJSON);
+    document.getElementById(id_planta).addEventListener("click", function (event) {
+        console.log(event.target.id);
+        // accedemos al objeto event donde hay informacion sobre el evento,
+        // dentro de target podemos encontrar el id de la imagen
+        let id = event.target.id;
+        // Convertimos el id en una cadena JSON
+        let idJSON = JSON.stringify(id);
+        // Guardamos el array definido en localStorage
+        localStorage.setItem('id', idJSON);
+
         location.href = "../views/planta.view.php";
     });
+
+
+
 }
 
 

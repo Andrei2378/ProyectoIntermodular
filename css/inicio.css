@@ -5,6 +5,7 @@
             --beige-claro: #F9F5E7;
             --marron-cálido: #bd704c;
             --texto-gris: #555;
+            --verde-info: #74c69d;
         }
 
         /* Estilos generales */
@@ -68,6 +69,12 @@
 
         .card:hover{
             background-color: var(--marron-cálido);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .informacion:hover{
+            background-color: var(--verde-info);
             color: white;
             transform: translateY(-5px);
         }

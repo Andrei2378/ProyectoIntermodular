@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <div id="error" class="error" style="display: none;"></div>
 <?php include('../includes/navlogin.php'); ?>
 
 <div class="form-container">

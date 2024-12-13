@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand " href="#">
+        <a class="navbar-brand " href="./admin.view.php">
         <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="Logo" />
         </a>
         <a class="navbar-brand " href="#">Admin Jardinería</a>
@@ -15,16 +15,17 @@
                     <a class="nav-link active" href="./usuarios.view.php">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./productos.view.php">Productos</a>
+                    <a class="nav-link" href="./productosindex.php">Productos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./pedidos.view.php">Pedidos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../logout.php">Salir</a>
+                    <a class="nav-link" href="../../logout.php">Salir</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<link rel="stylesheet" href="../css/navadmin.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

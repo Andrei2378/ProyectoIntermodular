@@ -2,11 +2,22 @@
 include_once '../class/UsuariosClass.php';
 include_once '../class/AuthClass.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-$accion = isset($_GET['accion']) ? $_GET['accion'] : ""; //Obtenemos la accion
+$accion = isset($_REQUEST['accion']) ? $_REQUEST['accion'] : "no_valida"; //Obtenemos la accion
+//if ($accion != "registrarUsuario") {
+    //$idUsuario = $_SESSION['idUsuario'];
+//}
 
 $usuarios = new UsuariosClass();
 $auth = new AuthClass();
+
+//$usuario = $usuarios->obtenerUsuario($idUsuario);
+
+//if ($_SERVER['REQUEST_METHOD'] === 'GET' || $_SERVER['REQUEST_METHOD'] === 'POST') {
+
 
 switch ($accion) {
     case "obtenerUsuarios":
@@ -18,6 +29,7 @@ switch ($accion) {
             echo json_encode(["resp" => false, "message" => "no hay usuarios"]);
         }
         break;
+
     case "registrarUsuario":
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -94,7 +106,11 @@ switch ($accion) {
 
             $resultado = $usuarios->modificarUsuario($nombre, $email, $dni, $direccion, $poblacion, $provincia, $codigo_postal, $id);
             if ($resultado == 1) {
-                echo json_encode(["resp" => true, "message" => "usuario editado correctamente!"]);
+                if ($_SESSION['rol'] == 'admin') {
+                    echo json_encode(["resp" => true, "message" => "usuario editado correctamente!"]);
+                } else {
+                    echo "<script>window.location.href = '../views/datosusuario.view.php?accion=modificarUsuario'</script>";
+                }
             } else {
                 echo json_encode(["resp" => false, "message" => "error al modificar usuario"]);
             }
@@ -124,14 +140,22 @@ switch ($accion) {
             }
         }
         break;
-    
 
-
+    case "modificarPass":
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $newPass = $_POST['nuevaPass'];
+            $resultado = $usuarios->cambiarPass($idUsuario, $newPass);
+            if ($resultado) {
+                echo "<script>window.location.href = '../views/datosusuario.view.php'</script>";
+            } else {
+                echo "<script>window.location.href = '../views/cambiarpass.view.php'</script>";
+            }
+        }
 
     default:
-        echo json_encode(["resp" => false, "message" => "Accion no valida"]);
+        //echo json_encode(["resp" => false, "message" => "Accion no valida"]);
         break;
 
-
-
 }
+//}
+

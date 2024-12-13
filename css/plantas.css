@@ -1,4 +1,4 @@
-/*---------------------------------------PLANTAS----------------------------------*/
+/* ----------------------------------- Tarjetas ---------------------------------------------------- */
 .info_planta {
   background-color: #e9ecef;
   width: 17%; /* Ajusta el porcentaje para 5 columnas */
@@ -47,40 +47,26 @@
   color: #3a5a40; /* Texto verde medio */
   font-size: 1em;
 }
-/*-----------------------------------------PLANTAS------------------------------------------------------*/
 
-/*---------------------------------------PAGINACION-----------------------------------------------------*/
-
+/* ----------------------------------- Paginación --------------------------------------------------- */
 #paginador {
   width: 100%;
-  display: flex; /* Flexbox para alinear los elementos */
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  gap: 15px; /* Espacio entre los botones y números */
-  margin-top: 20px; /* Espacio superior para separarlo del contenido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
   margin-bottom: 20px;
-}
-
-#btn-prev, #btn-next {
-  padding: 10px 20px; /* Tamaño del botón */
-  margin: 0 5px; /* Margen para separar botones */
-  background-color: burlywood;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  transition: background-color 0.3s ease;
-}
-
-#btn-prev:hover, #btn-next:hover {
-  background-color: #d4a373; /* Cambia el color al pasar el mouse */
+  flex-wrap: nowrap; /* Asegura que los elementos se mantengan en una sola fila */
 }
 
 #numeros {
-  display: flex; /* Alineación en fila */
-  gap: 10px; /* Espacio entre los números */
+  display: flex; /* Alinea los números en una fila */
+  flex-wrap: wrap; /* Permite que los números se ajusten si el espacio es limitado */
+  justify-content: center; /* Centra los números horizontalmente */
+  gap: 10px; /* Espaciado entre botones */
+  max-width: 100%; /* Asegura que no se exceda el ancho disponible */
+  overflow-x: auto; /* Habilita scroll horizontal si es necesario */
 }
 
 #numeros button {
@@ -93,6 +79,7 @@
   font-weight: bold;
   color: #333;
   transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Evita que los botones se reduzcan demasiado */
 }
 
 #numeros button:hover {
@@ -105,8 +92,41 @@
   border-color: rgb(0, 120, 20) !important;
 }
 
-/*-----------------------------------PAGINACION----------------------------------------------------*/
+#btn-prev,
+#btn-next {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: burlywood;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Mantiene los botones en el mismo tamaño */
+}
 
+#btn-prev:hover,
+#btn-next:hover {
+  background-color: #d4a373;
+}
+
+@media screen and (max-width: 480px) {
+  #numeros {
+    gap: 5px; /* Reduce el espacio entre números */
+    justify-content: start; /* Alinea los números al inicio si el espacio es limitado */
+  }
+
+  #btn-prev,
+  #btn-next {
+    width: auto; /* Mantén el tamaño adecuado en móviles */
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* ----------------------------------- Loader ------------------------------------------------------ */
 #loader-wrapper {
   display: flex;
   justify-content: center;
@@ -121,8 +141,8 @@
 }
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -135,5 +155,38 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* ----------------------------------- Estilos Responsivos ----------------------------------------- */
+@media screen and (max-width: 1200px) {
+  .info_planta {
+    width: 23%; /* 4 columnas en pantallas medianas */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .info_planta {
+    width: 48%; /* 2 columnas en pantallas pequeñas */
+    margin-left: 10px;
+  }
+
+  #btn-prev,
+  #btn-next {
+    width: 45%; /* Ajusta el ancho de los botones */
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #numeros button {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .info_planta {
+    width: 100%; /* 1 columna en pantallas muy pequeñas */
+    margin-left: 0;
   }
 }
