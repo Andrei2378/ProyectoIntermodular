@@ -7,14 +7,14 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $accion = isset($_REQUEST['accion']) ? $_REQUEST['accion'] : "no_valida"; //Obtenemos la accion
-//if ($accion != "registrarUsuario") {
-    //$idUsuario = $_SESSION['idUsuario'];
-//}
+if ($accion != "registrarUsuario") {
+    $idUsuario = $_SESSION['idUsuario'];
+}
 
 $usuarios = new UsuariosClass();
 $auth = new AuthClass();
 
-//$usuario = $usuarios->obtenerUsuario($idUsuario);
+$usuario = $usuarios->obtenerUsuario($idUsuario);
 
 //if ($_SERVER['REQUEST_METHOD'] === 'GET' || $_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -117,17 +117,19 @@ switch ($accion) {
         }
         break;
 
-    case "eliminarUsuario":
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $id = $_POST['eliminar'];
-
-            $resultado = $usuarios->eliminarUsuario($id);
-            if ($resultado == 1) {
-                echo json_encode(["resp" => true, "message" => "usuario eliminado correctamente"]);
-            } else {
-                echo json_encode(["resp" => false, "message" => "error al eliminar"]);
+        case "eliminarUsuario":
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $id = $_POST['eliminar'];
+        
+                $resultado = $usuarios->eliminarUsuario($id);
+                if ($resultado == 1) {
+                    echo json_encode(["resp" => true, "message" => "usuario eliminado correctamente"]);
+                } else {
+                    echo json_encode(["resp" => false, "message" => "error al eliminar"]);
+                }
             }
-        }
+            break;
+        
 
     case "obtenerUsuario":
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {

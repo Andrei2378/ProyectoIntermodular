@@ -8,8 +8,8 @@
 <style>
     form {
         display: block;
-        width: 400px;
-        margin: 10% 40%;
+        width: 500px;
+        margin: 2% 33%;
         border: 1px solid black;
         padding: 10px;
         border-radius: 5px;

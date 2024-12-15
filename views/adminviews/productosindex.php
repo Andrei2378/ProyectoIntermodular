@@ -7,13 +7,29 @@ if ($conn->connect_error) {
     die("Error de conexion");
 }
 
+// Obtener el término de búsqueda desde el parámetro GET (si está presente)
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Modificar la consulta SQL para incluir la búsqueda
 $sqlProductos = 'SELECT c.*, p.*, c.nombre AS nombre_categoria FROM categorias c 
-                                                    INNER JOIN productos p 
-                                                    ON c.id_categoria = p.id_categoria';
+                 INNER JOIN productos p ON c.id_categoria = p.id_categoria';
 
-$productos = $conn->query($sqlProductos);
+if ($search) {
+    $sqlProductos .= " WHERE p.nombre LIKE ?";  // Agregar filtro de búsqueda
+}
+
+$stmt = $conn->prepare($sqlProductos);
+
+// Si hay un término de búsqueda, lo vinculamos a la consulta
+if ($search) {
+    $searchTerm = '%' . $search . '%';
+    $stmt->bind_param("s", $searchTerm);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
+
 $dir = "../img/";
-
 ?>
 
 <!DOCTYPE html>
@@ -23,156 +39,109 @@ $dir = "../img/";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Productos - Gardenia</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/navadmin.css" rel="stylesheet">
     <link href="../../css/footer.css" rel="stylesheet">
-
 </head>
 
 <body class="d-flex flex-column h-100">
     <?php include('../../includes/adminnav.php'); ?>
-    <div class="container py-3">
 
-        <h2 class="text-center">Productos</h2>
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Gestión de Productos</h2>
 
-        <hr>
+        <!-- Campo de búsqueda -->
+        <form method="GET" action="">
+            <div class="row mb-4">
+                <div class="col-md-6 mx-auto">
+                    <input type="text" name="search" id="searchInput" class="form-control" placeholder="Buscar producto por nombre..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                </div>
+            </div>
+        </form>
 
-        <div class="row justify-content-end">
+        <!-- Botón para añadir un nuevo producto -->
+        <div class="row justify-content-end mb-3">
             <div class="col-auto">
-                <a href="./nuevoproducto.view.php" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Nuevo
-                    producto</a>
+                <a href="./nuevoproducto.view.php" class="btn btn-success btn-sm">
+                    <i class="fa-solid fa-circle-plus"></i> Añadir Producto
+                </a>
             </div>
         </div>
 
-        <table class="table table-sm table-striped table-hover mt-4">
-            <thead class="table-dark">
-                <tr>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th width="70%">Descripción</th>
-                    <th>Precio</th>
-                    <th>Categoria</th>
-                    <th colspan="2">Acción</th>
-                </tr>
-            </thead>
-            <?php while ($row = $productos->fetch_assoc()) { ?>
-                <form action="../../api/productos.php?accion=modificar" method="POST">
+        <!-- Tabla de productos -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle" id="productTable">
+                <thead class="table-dark">
                     <tr>
-                        <td><img src="<?= '../' . $row['imagen'] . '?n=' . time(); ?>" width="100"></td>
-                        <input type="hidden" name="id_producto" value="<?= $row['id_producto']; ?>" id="">
-                        <td>
-                            <input type="text" name="nombre" value="<?= $row['nombre']; ?>" id="">
-                        </td>
-                        <td width="100%">
-                            <input type="text" name="descripcion" value="<?= $row['descripcion']; ?>" id="">
-                        </td>
-                        <td>
-                            <input type="number" name="precio" value="<?= $row['precio']; ?>" id="">
-                        </td>
-                        <td>
-                            <select name="id_categoria" id="">
-                                <option selected value="<?= $row['id_categoria']; ?>"><?= $row['nombre_categoria']; ?>
-                                </option>
-                                <option value="1">Herramientas</option>
-                                <option value="2">Abonos</option>
-                                <option value="4">Accesorios</option>
-                                <option value="5">Materiales</option>
-                            </select>
-                        </td>
-
-                        <td>
-                            <button type="submit" class="btn btn-sm btn-warning">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                Editar
-                            </button>
-                        </td>
-                        <td>
-                            <a href="../../api/productos.php?accion=eliminar&id=<?= $row['id_producto']; ?>"
-                                class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>
-                                Eliminar</a>
-                        </td>
+                        <th scope="col" class="text-center">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col" class="w-50">Descripción</th>
+                        <th scope="col" class="text-end">Precio</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col" colspan="2" class="text-center">Acción</th>
                     </tr>
-                </form>
-            <?php } ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <form action="../../api/productos.php?accion=modificar" method="POST">
+                            <tr>
+                                <!-- Imagen del producto -->
+                                <td class="text-center">
+                                    <img src="<?= '../' . $row['imagen'] . '?n=' . time(); ?>" 
+                                         alt="Imagen de <?= $row['nombre']; ?>" 
+                                         class="img-fluid rounded shadow" 
+                                         style="max-width: 100px;">
+                                </td>
+                                <!-- Nombre del producto -->
+                                <td class="product-name">
+                                    <input type="hidden" name="id_producto" value="<?= $row['id_producto']; ?>">
+                                    <input type="text" name="nombre" value="<?= $row['nombre']; ?>" 
+                                           class="form-control form-control-sm" required>
+                                </td>
+                                <!-- Descripción del producto -->
+                                <td>
+                                    <textarea name="descripcion" rows="2" 
+                                              class="form-control form-control-sm" required><?= $row['descripcion']; ?></textarea>
+                                </td>
+                                <!-- Precio del producto -->
+                                <td class="text-end">
+                                    <input type="number" name="precio" value="<?= $row['precio']; ?>" 
+                                           class="form-control form-control-sm text-end" step="0.01" min="0" required>
+                                </td>
+                                <!-- Categoría -->
+                                <td>
+                                    <select name="id_categoria" class="form-select form-select-sm" required>
+                                        <option selected value="<?= $row['id_categoria']; ?>"><?= $row['nombre_categoria']; ?></option>
+                                        <?php if ($nombrecat != "Herramientas") echo "<option value='1'>Herramientas</option>"; ?>
+                                        <?php if ($nombrecat != "Abonos") echo "<option value='2'>Abonos</option>"; ?>
+                                        <?php if ($nombrecat != "Accesorios") echo "<option value='4'>Accesorios</option>"; ?>
+                                        <?php if ($nombrecat != "Materiales") echo "<option value='5'>Materiales</option>"; ?>
+                                    </select>
+                                </td>
+                                <!-- Botones de acción -->
+                                <td class="text-center">
+                                    <button type="submit" class="btn btn-warning btn-sm">
+                                        <i class="fa-solid fa-pen-to-square"></i> Actualizar
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <a href="../../api/productos.php?accion=eliminar&id=<?= $row['id_producto']; ?>" 
+                                       class="btn btn-danger btn-sm">
+                                        <i class="fa-solid fa-trash"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        </form>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-
-
-    <?php /* include 'ProductonuevoModal.php'; */ ?>
-
-    <?php $generos->data_seek(0); ?>
-
-    <?php include 'ProdutoeditaModal.php'; ?>
-    <?php include 'ProductoeliminaModal.php'; ?>
-
-    <script>
-        let nuevoModal = document.getElementById('nuevoModal')
-        let editaModal = document.getElementById('editaModal')
-        let eliminaModal = document.getElementById('eliminaModal')
-
-        nuevoModal.addEventListener('shown.bs.modal', event => {
-            nuevoModal.querySelector('.modal-body #nombre').focus()
-        })
-
-        nuevoModal.addEventListener('hide.bs.modal', event => {
-            nuevoModal.querySelector('.modal-body #nombre').value = ""
-            nuevoModal.querySelector('.modal-body #descripcion').value = ""
-            nuevoModal.querySelector('.modal-body #genero').value = ""
-            nuevoModal.querySelector('.modal-body #poster').value = ""
-        })
-
-        editaModal.addEventListener('hide.bs.modal', event => {
-            editaModal.querySelector('.modal-body #nombre').value = ""
-            editaModal.querySelector('.modal-body #descripcion').value = ""
-            editaModal.querySelector('.modal-body #genero').value = ""
-            editaModal.querySelector('.modal-body #img_poster').value = ""
-            editaModal.querySelector('.modal-body #poster').value = ""
-        })
-
-        editaModal.addEventListener('shown.bs.modal', event => {
-            let button = event.relatedTarget
-            let id = button.getAttribute('data-bs-id')
-
-            let inputId = editaModal.querySelector('.modal-body #id')
-            let inputNombre = editaModal.querySelector('.modal-body #nombre')
-            let inputDescripcion = editaModal.querySelector('.modal-body #descripcion')
-            let inputGenero = editaModal.querySelector('.modal-body #genero')
-            let poster = editaModal.querySelector('.modal-body #img_poster')
-
-            let url = "PeliculagetPelicula.php"
-            let formData = new FormData()
-            formData.append('id', id)
-
-            fetch(url, {
-                method: "POST",
-                body: formData
-            }).then(response => response.json())
-                .then(data => {
-
-                    inputId.value = data.id
-                    inputNombre.value = data.nombre
-                    inputDescripcion.value = data.descripcion
-                    inputGenero.value = data.id_genero
-                    poster.src = '<?= $dir ?>' + data.id + '.jpg'
-
-                }).catch(err => console.log(err))
-
-        })
-
-        eliminaModal.addEventListener('shown.bs.modal', event => {
-            let button = event.relatedTarget
-            let id = button.getAttribute('data-bs-id')
-            eliminaModal.querySelector('.modal-footer #id').value = id
-        })
-    </script>
-
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-
     <?php include('../../includes/footer.php'); ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

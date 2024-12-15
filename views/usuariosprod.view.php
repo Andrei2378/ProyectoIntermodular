@@ -2,12 +2,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../img/Gardenia.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/navuser.css" />
-
     <style>
-        .imagen_producto{
+        .imagen_producto {
             width: 100%;
-            height: 350px;
+            height: 250px;
             object-fit: cover;
+        }
+        .card {
+            height: 100%;
+        }
+        .card-body, .card-footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
     </style>
 </header>
@@ -31,49 +38,37 @@ if (isset($_GET['resp'])) {
     echo "</div>";
 }
 echo '<div class="container mt-3">';
-$contador = 0; // Contador para controlar las tarjetas por fila
+echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">'; // Clases de Bootstrap para diseño responsivo
+
 foreach ($obtenerProductos as $producto) {
-    // Abre una nueva fila después de cada tres tarjetas
-    if ($contador % 3 == 0) {
-        echo '<div class="row">';
-    }
-    //Si la imagen no existe o está cargada mal, pondrá una imagen por defecto
+    // Si la imagen no existe o está cargada mal, pondrá una imagen por defecto
     if ($producto['imagen'] == null || $producto['imagen'] == "" || !$producto['imagen']) {
         $producto['imagen'] = "../img/imagen_por_defecto.png";
     }
 
-    echo '<div class="col-md-4 mb-3">';
-    echo '<div class="card h-80">'; // Añadido h-100 para asegurar altura uniforme
-    echo '<div class="card-cover overflow-hidden border-2 h-25" style="background-image: url("' . $producto['imagen'] . '");background-repeat: no-repeat;">';
-    echo '<img src="' . $producto["imagen"] . '" class=" imagen_producto card-img-top" alt="' . $producto["nombre"] . '">'; //../img/pala_jardineria.png
-    echo '</div>';
+    echo '<div class="col">';
+    echo '<div class="card h-100">'; // h-100 asegura altura uniforme
+    echo '<img src="' . $producto["imagen"] . '" class="imagen_producto card-img-top" alt="' . $producto["nombre"] . '">';
     echo '<div class="card-body">';
-    echo '<h5 class="card-title h-10">' . $producto["nombre"] . '</h5>';
-    echo '<p class="card-text h-10">' . $producto["descripcion"] . '</p>';
-    echo '<p class="card-text h-10"><strong>Precio:</strong> ' . $producto["precio"] . '€</p>';
-    echo '<p class="card-text h-10"><strong>Categoría:</strong> ' . $producto["nombre_categoria"] . '</p>';
+    echo '<h5 class="card-title">' . $producto["nombre"] . '</h5>';
+    echo '<p class="card-text">' . $producto["descripcion"] . '</p>';
+    echo '<p class="card-text"><strong>Precio:</strong> ' . $producto["precio"] . '€</p>';
+    echo '<p class="card-text"><strong>Categoría:</strong> ' . $producto["nombre_categoria"] . '</p>';
     echo '</div>'; // Cierre de div.card-body
-    echo '<div class="card-footer h-10">'; // Añadido un footer para separar el botón
-    echo '<div class="d-grid gap-2">';
-    echo '<a class="btn btn-success" href="../api/carrito.php?id_producto=' . $producto["id_producto"] . '&cat=' . $cat . '&accion=agregarProducto">Añadir al carrito</a>';
-    echo '</div>'; // Cierre de div.d-grid
+    echo '<div class="card-footer">';
+    echo '<a class="btn btn-success w-100" href="../api/carrito.php?id_producto=' . $producto["id_producto"] . '&cat=' . $cat . '&accion=agregarProducto">Añadir al carrito</a>';
     echo '</div>'; // Cierre de div.card-footer
     echo '</div>'; // Cierre de div.card
-    echo '</div>'; // Cierre de div.col-md-4
-
-
-    // Cierra la fila después de cada tres tarjetas
-    if ($contador % 3 == 2 || $contador == count($obtenerProductos) - 1) {
-        echo '</div>'; // Cierre de div.row
-    }
-
-    $contador++;
+    echo '</div>'; // Cierre de div.col
 }
+
+echo '</div>'; // Cierre de div.row
 echo '</div>'; // Cierre de div.container
 
-echo '<div class="container mb-5">';
-echo '<nav class= "">';
-echo '<ul class= "pagination justify-content-center">';
+// Navegación de páginas
+echo '<div class="container mt-3 mb-3">';
+echo '<nav>';
+echo '<ul class="pagination justify-content-center">';
 if ($pag > 1) {
     echo '<li class="page-item">';
     echo '<a class="btn btn-outline-secondary" href="?cat=' . $cat . '&pag=' . ($pag - 1) . '">Anterior</a>';
@@ -81,9 +76,9 @@ if ($pag > 1) {
 }
 
 for ($i = 1; $i <= $totalPag; $i++) {
-    $activo = ($i == $pag) ? 'class = "active"' : '';
-    echo '<li class="page-item">';
-    echo '<a class="page-link" href="?cat=' . $cat . '&pag=' . $i . '" ' . $activo . '>' . $i . '</a>';
+    $activo = ($i == $pag) ? 'active' : '';
+    echo '<li class="page-item ' . $activo . '">';
+    echo '<a class="page-link" href="?cat=' . $cat . '&pag=' . $i . '">' . $i . '</a>';
     echo '</li>';
 }
 
@@ -97,4 +92,4 @@ echo '</nav>';
 echo '</div>';
 
 include('../includes/footer.php');
-
+?>

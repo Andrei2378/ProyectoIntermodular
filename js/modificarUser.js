@@ -18,9 +18,9 @@ async function obtenerDatos() {
         if (data.resp === true) {
 
             const fragment = `
-            <div class="container mt-5">
-            <form id="formulario" action="" method="POST" class="bg-light p-4 rounded">
-                <h2 class="text-center mb-4">Modificar Usuario</h2>
+            <div class="container mt-1">
+            <form id="formulario" method="POST" class="bg-light p-4 rounded">
+                <h2 class="text-center mb-2">Modificar Usuario</h2>
                 
                 <div class="form-group">
                     <label for="usuario">Nombre Usuario</label>
@@ -107,6 +107,7 @@ async function validaciones() {
     } else {
         msgDNI.innerText = "DNI correcto";
         msgDNI.style.color = "green";
+        msgDNI.style.textDecoration = "bold";
     }
 
     if (!correo) {

@@ -60,7 +60,7 @@
                         regaderas, macetas, entre otros.</p>
                 </div>
             </div>
-            <h2></h2>
+            <h3 class="text-center mb-4">Información adicional</h3>
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card informacion">
                     <div class="icon-container">

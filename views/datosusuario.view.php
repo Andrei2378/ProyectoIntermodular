@@ -18,7 +18,7 @@
     ?>
 
     <main class="container my-5">
-        <h2 class="text-center mb-4">Editar Perfil del Usuario</h2>
+        <h4 class="text-center mb-4">Perfil</h4>
 
         <?php if ($usuario): ?>
             <form action="../api/users.php?accion=modificarUsuario" method="POST" class="card mx-auto shadow-lg border-0"

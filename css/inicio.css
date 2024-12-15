@@ -95,3 +95,8 @@
         .icon-container {
             background-color: var(--verde-claro);
         }
+
+        #marron:hover{
+            background-color: white;
+            color: black;
+        }

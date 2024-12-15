@@ -67,6 +67,7 @@ class UsuariosClass
             return false;
         }
     }
+    
 
     public function cambiarPass($id, $nuevaPass)
     {

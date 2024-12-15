@@ -89,9 +89,6 @@ class ProductsClass
         }
     }
 
-
-
-
     public function modificarProducto($producto)
     {
         $nombre = $producto['nombre'];
@@ -123,6 +120,17 @@ class ProductsClass
         }
     }
 
-
+    public function listarProductos(){
+        $consulta = $this->conexion->prepare('SELECT c.*, p.*, c.nombre AS nombre_categoria FROM categorias c 
+                                                    INNER JOIN productos p 
+                                                    ON c.id_categoria = p.id_categoria');
+        $consulta->execute();
+        $resultado = $consulta->get_result();
+        $producto = [];
+        while ($fila = $resultado->fetch_assoc()) {
+            $producto[] = $fila;
+        }
+        return $producto;
+    }
 
 }
