@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2024 a las 09:32:26
+-- Tiempo de generación: 16-12-2024 a las 14:14:14
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -103,8 +103,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `imagen`, `id_categoria`) VALUES
-(1, 'Pala de jardín', 'Pala resistente para cavar y trasplantar en el jardín.', '23.99', '../img/pala_jardineria.png', 1),
-(2, 'Rastrillo de mano', 'Rastrillo pequeño para trabajar en áreas reducidas del jardín.', '9.99', '../img/rastrillo_mano.png', 4),
+(1, 'Pala de jardín', 'Pala resistente para cavar y trasplantar en el jardín.', '26.99', '../img/pala_jardineria.png', 1),
+(2, 'Rastrillo de mano', 'Rastrillo pequeño para trabajar en áreas reducidas del jardín.', '9.99', '../img/rastrillo_mano.png', 1),
 (3, 'Tijeras de podar', 'Tijeras afiladas para podar ramas y arbustos.', '12.49', '../img/tijera_podar.png', 1),
 (4, 'Hacha de jardín', 'Herramienta para cortar ramas gruesas y leñosas.', '18.99', '../img/hacha_jardineria.png', 1),
 (5, 'Azada', 'Instrumento para cavar y remover la tierra en el jardín.', '11.99', '../img/azada_jardineria.png', 1),
@@ -118,7 +118,6 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `imag
 (22, 'Turba', 'Material orgánico para mejorar la retención de agua en el suelo.', '5.49', '../img/abono.png', 2),
 (23, 'Perlita', 'Sustrato ligero utilizado para mejorar la aireación del suelo.', '4.99', '../img/abono.png', 2),
 (24, 'Vermiculita', 'Sustrato mineral para mejorar la retención de agua y nutrientes.', '6.99', '../img/abono.png', 2),
-(25, 'Humus de lombriz', 'Abono orgánico rico en nutrientes y microorganismos beneficiosos.', '9.99', '../img/abono.png', 2),
 (26, 'Coco coir', 'Fibra de coco utilizada como sustrato para plantas de interior.', '7.49', '../img/abono.png', 2),
 (29, 'Tierra para jardín', 'Sustrato universal para el cultivo de plantas en el jardín.', '6.49', '../img/abono.png', 2),
 (30, 'Arena para cactus', 'Sustrato específico para el cultivo de cactus y suculentas.', '4.49', '../img/abono.png', 2),
@@ -139,46 +138,23 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `precio`, `imag
 (45, 'Fertilizante en polvo para flores', 'Fertilizante en polvo para promover una floración exuberante.', '11.99', '../img/fertilizante.png', 2),
 (46, 'Fertilizante para tomates', 'Fertilizante específico para tomates para un mejor rendimiento.', '13.49', '../img/fertilizante.png', 2),
 (47, 'Fertilizante para cítricos', 'Fertilizante especial para cítricos para frutas más dulces y jugosas.', '14.99', '../img/fertilizante.png', 2),
-(61, 'Guantes de jardinería', 'Guantes resistentes y cómodos para proteger las manos durante la jardinería.', '7.99', '../img/pala_jardineria.png', 4),
-(62, 'Regadera de plástico', 'Regadera ligera y duradera para el riego de plantas.', '11.49', '../img/pala_jardineria.png', 4),
-(63, 'Maceta de terracota', 'Maceta de arcilla porosa ideal para el cultivo de plantas de interior.', '6.99', '../img/pala_jardineria.png', 4),
-(64, 'Delantal de jardinería', 'Delantal resistente al agua y las manchas para trabajar en el jardín.', '9.99', '../img/pala_jardineria.png', 4),
-(65, 'Rociador de mano', 'Rociador de mano para aplicar agua y fertilizantes de manera precisa.', '13.49', '../img/pala_jardineria.png', 4),
-(66, 'Soporte para manguera', 'Soporte resistente para colgar y almacenar mangueras de jardín.', '18.99', '../img/pala_jardineria.png', 4),
-(67, 'Rodilleras de jardinería', 'Almohadillas acolchadas para proteger las rodillas durante las tareas de jardinería.', '10.99', '../img/pala_jardineria.png', 4),
-(68, 'Cubo de jardinería', 'Cubo resistente y multiusos para transportar agua y materiales de jardinería.', '8.49', '../img/pala_jardineria.png', 4),
-(69, 'Cepillo para macetas', 'Cepillo de cerdas duras para limpiar macetas y recipientes de jardín.', '5.99', '../img/pala_jardineria.png', 4),
-(70, 'Bolsa para herramientas de jardinería', 'Bolsa resistente con múltiples compartimentos para transportar herramientas de jardinería.', '16.99', '../img/pala_jardineria.png', 4),
-(71, 'Espiral anti-aves', 'Espiral de plástico para proteger las plantas de las aves.', '7.49', '../img/pala_jardineria.png', 4),
-(72, 'Etiquetas para plantas', 'Etiquetas de plástico reutilizables para identificar plantas en el jardín.', '3.99', '../img/pala_jardineria.png', 4),
-(73, 'Soporte para plantas trepadoras', 'Soporte de metal para guiar el crecimiento de plantas trepadoras.', '14.49', '../img/pala_jardineria.png', 4),
-(74, 'Red para proteger árboles frutales', 'Red de nylon para proteger los árboles frutales de pájaros y animales.', '19.99', '../img/pala_jardineria.png', 4),
-(75, 'Estaca para plantas', 'Estaca de madera o metal para sostener plantas altas y frágiles.', '6.49', '../img/pala_jardineria.png', 4),
-(76, 'Enrejado de jardín', 'Enrejado de madera o metal para decorar y soportar plantas trepadoras.', '22.99', '../img/pala_jardineria.png', 4),
-(77, 'Soporte para regadera', 'Soporte resistente para colocar la regadera durante el riego de plantas.', '9.49', '../img/pala_jardineria.png', 4),
-(78, 'Saco de yute para almacenamiento', 'Saco resistente y transpirable para almacenar bulbos y tubérculos.', '12.99', '../img/pala_jardineria.png', 4),
-(79, 'Cepillo para musgo', 'Cepillo de cerdas suaves para limpiar musgo y líquenes de piedras y superficies.', '8.99', '../img/pala_jardineria.png', 4),
-(80, 'Vara de soporte para plantas', 'Vara de metal o madera para sostener plantas altas y endebles.', '5.49', '../img/pala_jardineria.png', 4),
-(81, 'Piedras decorativas', 'Piedras de colores para decorar senderos y áreas del jardín.', '14.99', '../img/pala_jardineria.png', 5),
-(82, 'Madera tratada', 'Tablas de madera tratada para la construcción de bordes y estructuras en el jardín.', '19.99', '../img/pala_jardineria.png', 5),
-(83, 'Plástico para mulching', 'Material plástico para cubrir el suelo y controlar malezas y humedad.', '8.49', '../img/pala_jardineria.png', 5),
-(84, 'Borde de jardín de metal', 'Borde de metal para delinear áreas y contener el crecimiento de plantas.', '11.99', '../img/pala_jardineria.png', 5),
-(85, 'Grava para jardinería', 'Grava de diferentes tamaños y colores para pavimentar y decorar el jardín.', '12.49', '../img/pala_jardineria.png', 5),
-(86, 'Piedra de jardín', 'Piedras grandes para decorar jardines y crear elementos de agua.', '24.99', '../img/pala_jardineria.png', 5),
-(87, 'Policarbonato para invernaderos', 'Placas de policarbonato para construir cubiertas de invernaderos.', '18.99', '../img/pala_jardineria.png', 5),
-(88, 'Malla de sombreo', 'Malla de tela para proteger las plantas del sol directo y el calor excesivo.', '15.49', '../img/pala_jardineria.png', 5),
-(89, 'Césped artificial', 'Rollo de césped artificial para crear áreas verdes de bajo mantenimiento.', '29.99', '../img/pala_jardineria.png', 5),
-(90, 'Estacas de bambú', 'Estacas naturales de bambú para sostener plantas y guiar su crecimiento.', '7.99', '../img/pala_jardineria.png', 5),
-(91, 'Rollo de alambre de jardinería', 'Rollo de alambre para construir cercas y estructuras en el jardín.', '13.49', '../img/pala_jardineria.png', 5),
-(92, 'Macetero de madera', 'Macetero de madera resistente para plantas de interior y exterior.', '21.99', '../img/pala_jardineria.png', 5),
-(93, 'Tierra para jardín', 'Bolsa de tierra orgánica para mejorar la calidad del suelo en el jardín.', '8.99', '../img/pala_jardineria.png', 5),
-(94, 'Piedras de río', 'Piedras naturales para decorar arriates y bordes de jardín.', '10.99', '../img/pala_jardineria.png', 5),
-(95, 'Césped en rollo', 'Rollo de césped natural para establecer áreas de césped de forma rápida.', '34.99', '../img/pala_jardineria.png', 5),
-(96, 'Bolsa de musgo', 'Bolsa de musgo esfagno para la decoración y el cultivo de plantas de interior.', '6.49', '../img/pala_jardineria.png', 5),
-(97, 'Carbón para barbacoa', 'Saco de carbón vegetal para usar como sustrato en macetas y jardineras.', '7.99', '../img/pala_jardineria.png', 5),
-(98, 'Tela geotextil', 'Rollo de tela para controlar la erosión y mejorar la retención de agua en el suelo.', '16.49', '../img/plantaPrueba3.jpg', 5),
-(99, 'Corteza de árbol', 'Corteza de árbol triturada para cubrir el suelo y retener la humedad.', '9.99', '../img/plantaPrueba2.jpg', 5),
-(100, 'Panel de césped artificial', 'Panel modular de césped artificial para cubrir grandes áreas de forma uniforme.', '39.99', '../img/planta_prueba.jpg', 5);
+(61, 'Guantes de jardinería', 'Guantes resistentes y cómodos para proteger las manos durante la jardinería.', '7.99', '../img/guantes_jardineria.jpg', 4),
+(62, 'Regadera de plástico', 'Regadera ligera y duradera para el riego de plantas.', '11.49', '../img/regadera.png', 4),
+(63, 'Maceta de terracota', 'Maceta de arcilla porosa ideal para el cultivo de plantas de interior.', '6.99', '../img/maceta_terracota.jpg', 4),
+(64, 'Delantal de jardinería', 'Delantal resistente al agua y las manchas para trabajar en el jardín.', '9.99', '../img/delantal.png', 4),
+(65, 'Rociador de mano', 'Rociador de mano para aplicar agua y fertilizantes de manera precisa.', '13.49', '../img/rociador.png', 4),
+(66, 'Soporte para manguera', 'Soporte resistente para colgar y almacenar mangueras de jardín.', '18.99', '../img/soporte_manguera.png', 4),
+(68, 'Cubo de jardinería', 'Cubo resistente y multiusos para transportar agua y materiales de jardinería.', '8.49', '../img/cubo_jardineria.png', 4),
+(85, 'Grava para jardinería', 'Grava de diferentes tamaños y colores para pavimentar y decorar el jardín.', '12.49', '../img/grava_jardineria.png', 5),
+(86, 'Piedra de jardín', 'Piedras grandes para decorar jardines y crear elementos de agua.', '24.99', '../img/piedra_jardineria.png', 5),
+(87, 'Policarbonato para invernaderos', 'Placas de policarbonato para construir cubiertas de invernaderos.', '18.99', '../img/policarbonato.png', 5),
+(89, 'Césped artificial', 'Rollo de césped artificial para crear áreas verdes de bajo mantenimiento.', '29.99', '../img/cesped_artificial.png', 5),
+(90, 'Estacas de bambú', 'Estacas naturales de bambú para sostener plantas y guiar su crecimiento.', '7.99', '../img/estaca_bambu.png', 5),
+(91, 'Rollo de alambre de jardinería', 'Rollo de alambre para construir cercas y estructuras en el jardín.', '13.49', '../img/alambre.png', 5),
+(92, 'Macetero de madera', 'Macetero de madera resistente para plantas de interior y exterior.', '21.99', '../img/macetero.jpg', 5),
+(93, 'Tierra para jardín', 'Bolsa de tierra orgánica para mejorar la calidad del suelo en el jardín.', '8.99', '../img/tierra_maceta.png', 5),
+(94, 'Piedras de río', 'Piedras naturales para decorar arriates y bordes de jardín.', '10.99', '../img/piedras_rio.png', 5),
+(96, 'Bolsa de musgo', 'Bolsa de musgo esfagno para la decoración y el cultivo de plantas de interior.', '6.49', '../img/musgo.png', 5);
 
 -- --------------------------------------------------------
 
@@ -205,10 +181,9 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `dni`, `pass`, `direccion`, `poblacion`, `provincia`, `codigo_postal`, `rol`) VALUES
 (1, 'admin', 'admin@admin.com', '', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '123 Calle Principal', 'Ciudad Ejemplo', 'Provincia Ejemplo', '12345', 'admin'),
-(2, 'Andrei4444', 'correo@gmail.com', '12345678Z', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'direccio11', 'poblacion', 'Burgos', '09400', 'user'),
+(2, 'Andrei44', 'correo@gmail.com', '12345678Z', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'direccio11', 'poblacion', 'Burgos', '09400', 'user'),
 (3, 'admin2@gmail.com', 'admin2@gmail.com', '12345678X', '60fe74406e7f353ed979f350f2fbb6a2e8690a5fa7d1b0c32983d1d8b3f95f67', 'C\\ Las Amapolas - nº10', 'Burgos', 'Burgos', '09400', 'admin'),
-(4, 'Andrei2', 'andrei@gmail.com', '12345678P', '8ed58d05dc90d42142f9fea7bf4cfcc964e51a9ad9ef85f831b0bdbba4a391c2', 'C\\ Las Amapolas - nº10', 'Burgos', 'Burgos', '09400', 'user'),
-(22, 'Juan Alberto', 'juan@gmail.com', '12345358X', '896815006b5e2d59d8cacc71832d72a9dee108ca73fc6f16c9425e9188455122', 'C\\Carretera Carrequemada nº1', 'Aranda de Duero', 'Burgos', '09400', 'user');
+(4, 'Andrei2', 'andrei@gmail.com', '12345678Y', '8ed58d05dc90d42142f9fea7bf4cfcc964e51a9ad9ef85f831b0bdbba4a391c2', 'C\\ Las Amapolas - nº10', 'Burgos', 'Burgos', '09400', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -265,7 +240,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -289,7 +264,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -331,186 +306,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-
-/*
-
-CREATE TABLE `carrito` (
-  `id_carrito` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL DEFAULT 1,
-  `fecha_agregado` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `categorias` (
-  `id_categoria` int(11) NOT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `detalles_pedido` (
-  `id_detalle` int(11) NOT NULL,
-  `id_pedido` int(11) DEFAULT NULL,
-  `id_producto` int(11) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL,
-  `precio_producto` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pedidos`
---
-
-CREATE TABLE `pedidos` (
-  `id_pedido` int(11) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `productos`
---
-
-CREATE TABLE `productos` (
-  `id_producto` int(11) NOT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
-  `precio` decimal(10,2) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `id_categoria` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `dni` varchar(10) NOT NULL,
-  `pass` varchar(100) DEFAULT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
-  `poblacion` varchar(100) DEFAULT NULL,
-  `provincia` varchar(100) DEFAULT NULL,
-  `codigo_postal` varchar(11) DEFAULT NULL,
-  `rol` varchar(10) DEFAULT 'user'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indices de la tabla `carrito`
---
-ALTER TABLE `carrito`
-  ADD PRIMARY KEY (`id_carrito`),
-  ADD UNIQUE KEY `id_usuario` (`id_usuario`,`id_producto`),
-  ADD KEY `id_producto` (`id_producto`),
-  ADD KEY `idx_usuario_producto` (`id_usuario`,`id_producto`);
-
---
--- Indices de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id_categoria`);
-
---
--- Indices de la tabla `detalles_pedido`
---
-ALTER TABLE `detalles_pedido`
-  ADD PRIMARY KEY (`id_detalle`),
-  ADD KEY `ID_pedido` (`id_pedido`),
-  ADD KEY `ID_producto` (`id_producto`);
-
---
--- Indices de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `ID_usuario` (`id_usuario`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id_producto`),
-  ADD KEY `ID_categoria` (`id_categoria`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `carrito`
---
-ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-
---
--- AUTO_INCREMENT de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `detalles_pedido`
---
-ALTER TABLE `detalles_pedido`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `carrito`
---
-ALTER TABLE `carrito`
-  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `detalles_pedido`
---
-ALTER TABLE `detalles_pedido`
-  ADD CONSTRAINT `detalles_pedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`),
-  ADD CONSTRAINT `detalles_pedido_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
-
---
--- Filtros para la tabla `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
-
---
--- Filtros para la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
-COMMIT;
-*/
