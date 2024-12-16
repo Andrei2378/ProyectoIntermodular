@@ -7,6 +7,7 @@
     <title>Crear Producto</title>
     <link rel="stylesheet" href="../../css/navadmin.css">
     <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 

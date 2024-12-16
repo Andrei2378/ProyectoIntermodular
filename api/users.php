@@ -18,8 +18,8 @@ $usuario = $usuarios->obtenerUsuario($idUsuario);
 
 //if ($_SERVER['REQUEST_METHOD'] === 'GET' || $_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
 switch ($accion) {
+    
     case "obtenerUsuarios":
         $obtenerUsuarios = $usuarios->obtenerUsuarios();
 

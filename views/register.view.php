@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/navuser.css" />
   <link rel="stylesheet" href="../css/register.css" />
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" type="image/x-icon">
 </head>
 
 <body>

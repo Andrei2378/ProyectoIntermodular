@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="../../css/navadmin.css" />
 <link rel="stylesheet" href="../../css/footer.css" />
 <link rel="stylesheet" href="../../css/register.css" />
+<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" type="image/x-icon">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <?php include('../../includes/adminnav.php'); ?>

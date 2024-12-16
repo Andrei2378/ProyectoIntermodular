@@ -10,12 +10,14 @@ if (!$_SESSION['loguedo']) {
 
 include '../../includes/adminnav.php';
 ?>
+<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" type="image/x-icon">
 <link rel="stylesheet" href="../../css/navadmin.css">
 <link rel="stylesheet" href="../../css/footer.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
 <div id="buscador" class="container">
-<input type="text" id="buscar" class="form-control mt-3 mb-3" placeholder="Buscar usuario" oninput="filtrar()" />
+    <input type="text" id="buscar" class="form-control mt-3 mb-3" placeholder="Buscar usuario" oninput="filtrar()" />
 </div>
 
 <div class="container">
