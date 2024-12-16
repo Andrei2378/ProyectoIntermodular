@@ -55,7 +55,7 @@
             </div>
             <div class="card-footer text-center">
                 <button type="submit" class="btn btn-success">Crear Producto</button>
-                <a href="../views/productos.view.php" class="btn btn-secondary">Cancelar</a>
+                <a href="./productosindex.php" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </main>
