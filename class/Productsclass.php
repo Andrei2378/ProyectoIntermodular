@@ -120,17 +120,29 @@ class ProductsClass
         }
     }
 
-    public function listarProductos(){
-        $consulta = $this->conexion->prepare('SELECT c.*, p.*, c.nombre AS nombre_categoria FROM categorias c 
-                                                    INNER JOIN productos p 
-                                                    ON c.id_categoria = p.id_categoria');
-        $consulta->execute();
-        $resultado = $consulta->get_result();
-        $producto = [];
-        while ($fila = $resultado->fetch_assoc()) {
-            $producto[] = $fila;
+    public function listarProductos($search = '')
+    {
+        $sql = 'SELECT c.*, p.*, c.nombre AS nombre_categoria FROM categorias c 
+                INNER JOIN productos p ON c.id_categoria = p.id_categoria';
+
+        if (!empty($search)) {
+            $sql .= ' WHERE p.nombre LIKE ?';
+            $stmt = $this->conexion->prepare($sql);
+            $searchTerm = "%$search%";
+            $stmt->bind_param('s', $searchTerm);
+        } else {
+            $stmt = $this->conexion->prepare($sql);
         }
-        return $producto;
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $productos = [];
+        while ($fila = $result->fetch_assoc()) {
+            $productos[] = $fila;
+        }
+
+        return $productos;
     }
 
 }
